@@ -1,11 +1,5 @@
-import { View } from 'react-native';
-import { SignedOutStack } from './navigation';
-
+import AuthNavigation from './AuthNavigation'
 
 export default function App() {
-  return (
-    
-      <SignedOutStack />
-    
-  );
+	return <AuthNavigation />
 }
