@@ -1,11 +1,11 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 
 const LoginScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>LoginScreen</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 
