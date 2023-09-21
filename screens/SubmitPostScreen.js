@@ -41,6 +41,7 @@ const SubmitPostScreen = ({ navigation, route }) => {
 	const [username, setUsername] = useState('')
 	const [profilePic, setProfilePic] = useState('')
   const date = new Date
+  const timestamp = date.getTime()
 
 	const getUsername = () => {
 		// may need to change doc ref from uid to user email to be consistent
@@ -75,9 +76,8 @@ const SubmitPostScreen = ({ navigation, route }) => {
 		const uploadToFirestoreDatabase = (downloadURL) => {
 			const unsubscribe = db
 				.collection('posts')
-				.doc(firebase.auth().currentUser.email)
-				.collection("userPosts")
-				.add({
+				.doc(`${firebase.auth().currentUser.email + timestamp}`)
+				.set({
 					imageUrl: downloadURL,
 					user: username,
 					profile_picture: profilePic,
