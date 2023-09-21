@@ -12,6 +12,7 @@ import { db, firebase } from '../../firebase'
 // Components
 import Header from '../../components/profile/Header'
 import SubHeader from '../../components/profile/SubHeader'
+import Bio from '../../components/profile/Bio'
 
 
 
@@ -30,13 +31,8 @@ const ProfileScreen = ({ navigation, route }) => {
     db
     .collection('users')
     .doc(userId)
-    .get()
-    .then((snapshot) => {
-      if (snapshot.exists) {
-        setUser({userId: userId, ...snapshot.data()})
-        console.log(user)
-      }
-      setLoading(false)
+    .onSnapshot((snapshot) => {
+      setUser({uid: userId, ...snapshot.data()})
     })
     // gets user post
     db
@@ -78,6 +74,7 @@ const ProfileScreen = ({ navigation, route }) => {
       <Header user={user} navigation={navigation}/>
       <ScrollView>
         <SubHeader user={user} userPosts={userPosts}/>
+        <Bio user={user}/>
       </ScrollView>
     </SafeAreaView>
   )
