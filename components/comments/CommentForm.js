@@ -21,7 +21,7 @@ const uploadCommentSchema = Yup.object().shape({
 		.max(2200, 'Comment has reached the character limit'),
 })
 
-const AddCommentForm = ({ post }) => {
+const CommentForm = ({ post }) => {
 	const [username, setUsername] = useState('')
 	const [profilePic, setProfilePic] = useState('')
 
@@ -151,4 +151,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default AddCommentForm
+export default CommentForm

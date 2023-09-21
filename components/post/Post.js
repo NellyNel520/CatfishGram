@@ -129,7 +129,7 @@ const Post = ({post}) => {
 					>
 						<View>
 							<CommentHeader modalVisible={modalVisible} />
-							{/* <AllComments post={post} comments={comments} /> */}
+							<AllComments post={post} comments={comments} />
 						</View>
 					</View>
 				</Modal>
@@ -213,7 +213,7 @@ const Post = ({post}) => {
 				<Likes post={post} />
 				<Caption post={post} />
 
-				{/* <CommentSection post={post} currentUser={currentUser}/> */}
+				<CommentSection post={post} />
 
 
 			</View>

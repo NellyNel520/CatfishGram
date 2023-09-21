@@ -12,6 +12,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import React from 'react'
 import { firebase, db } from '../../firebase'
 // components \\
+import CommentForm from './CommentForm'
 
 
 const likeIcons = [
@@ -139,7 +140,7 @@ const AllComments = ({ post, comments }) => {
           </View>
         )}
       </ScrollView>
-      {/* <AddCommentForm post={post} /> */}
+      <CommentForm post={post} />
     </View>
   </View>
   )
