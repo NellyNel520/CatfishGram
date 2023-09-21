@@ -14,6 +14,7 @@ import Header from '../../components/profile/Header'
 import SubHeader from '../../components/profile/SubHeader'
 import Bio from '../../components/profile/Bio'
 import Buttons from '../../components/profile/Buttons'
+import PostGrid from '../../components/profile/PostGrid'
 
 
 
@@ -48,21 +49,21 @@ const ProfileScreen = ({ navigation, route }) => {
       setIsCurrentUser(true)
     }
 // ****Gets users following and followers**** icebox 
-    // db
-    // .collection('users')
-    // .doc(userId)
-    // .collection('following')
-    // .onSnapshot((snapshot) => {
-    //   setFollowing(snapshot.docs.map((post) => ({ id: post.id, ...post.data() })))
-    // })
+    db
+    .collection('users')
+    .doc(userId)
+    .collection('following')
+    .onSnapshot((snapshot) => {
+      setFollowing(snapshot.docs.map((post) => ({ id: post.id, ...post.data() })))
+    })
 
-    // db
-    // .collection('users')
-    // .doc(userId)
-    // .collection('followers')
-    // .onSnapshot((snapshot) => {
-    //   setFollowers(snapshot.docs.map((post) => ({ id: post.id, ...post.data() })))
-    // })
+    db
+    .collection('users')
+    .doc(userId)
+    .collection('followers')
+    .onSnapshot((snapshot) => {
+      setFollowers(snapshot.docs.map((post) => ({ id: post.id, ...post.data() })))
+    })
 
    
 
@@ -72,12 +73,14 @@ const ProfileScreen = ({ navigation, route }) => {
 
 
   return (
+    // pass following & followers to subheader ,  &   followers to buttons 
     <SafeAreaView style={styles.container}>
       <Header user={user} navigation={navigation}/>
       <ScrollView>
-        <SubHeader user={user} userPosts={userPosts}/>
+        <SubHeader user={user} userPosts={userPosts} followers={followers} following={following}/>
         <Bio user={user}/>
         <Buttons userId={userId} isCurrentUser={isCurrentUser} followers={followers}/>
+        <PostGrid userPosts={userPosts}  navigation={navigation}/>
       </ScrollView>
     </SafeAreaView>
   )

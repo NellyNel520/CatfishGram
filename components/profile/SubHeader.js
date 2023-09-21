@@ -2,24 +2,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { db } from '../../firebase'
 
-const SubHeader = ({ user, userPosts }) => {
-  const [followers, setFollowers] = useState('')
-	const [following, setFollowing] = useState('')
-	
-
-	const randomFollowerCount = () => {
-		const randomNumber = Math.floor(Math.random() * 100) + 1
-		setFollowers(randomNumber)
-	}
-	const randomFollowingCount = () => {
-		const randomNumber = Math.floor(Math.random() * 100) + 1
-		setFollowing(randomNumber)
-	}
-
-	useEffect(() => {
-		randomFollowerCount()
-		randomFollowingCount()
-	}, [])
+const SubHeader = ({ user, userPosts, followers, following }) => {
 
 	return (
 		<View style={styles.container}>
@@ -38,12 +21,12 @@ const SubHeader = ({ user, userPosts }) => {
 				</TouchableOpacity>
 				{/* Followers */}
 				<TouchableOpacity style={styles.count}>
-					<Text style={styles.number}>{followers}</Text>
+					<Text style={styles.number}>{followers.length}</Text>
 					<Text style={styles.countTitle}>Followers</Text>
 				</TouchableOpacity>
 				{/* Following */}
 				<TouchableOpacity style={styles.count}>
-					<Text style={styles.number}>{following}</Text>
+					<Text style={styles.number}>{following.length}</Text>
 					<Text style={styles.countTitle}>Following</Text>
 				</TouchableOpacity>
 			</View>

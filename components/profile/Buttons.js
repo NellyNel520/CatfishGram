@@ -1,20 +1,28 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
+import { firebase } from '../../firebase'
 
 const Buttons = ({ userId, isCurrentUser, followers }) => {
 	const [isFollowing, setIsFollowing] = useState(false)
-  // does followers contain current user email ? if so set isFollowing to true within useEffect
+	// does followers contain current user email ? if so set isFollowing to true within useEffect
+	useEffect(() => {
+		if (followers.indexOf(firebase.auth().currentUser.email) > -1) {
+			setIsFollowing(true)
+		} else {
+			setIsFollowing(false)
+		}
+	}, [])
 
 	// handel follow & unfollow functions
-  const handleFollow =  (userId) => {
+	const handleFollow = (userId) => {
 		// adds current user to users followers list
-		 db.collection('users')
+		db.collection('users')
 			.doc(userId)
 			.collection('followers')
 			.doc(firebase.auth().currentUser.email)
 			.set({})
 		// adds user to current user's following list
-		 db.collection('users')
+		db.collection('users')
 			.doc(firebase.auth().currentUser.email)
 			.collection('following')
 			.doc(userId)
@@ -29,31 +37,27 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 			})
 	}
 
-  const handleUnFollow =  (userId) => {
-    db
-     .collection('users')
-     .doc(userId)
-     .collection('followers')
-     .doc(firebase.auth().currentUser.email)
-     .delete()
+	const handleUnFollow = (userId) => {
+		db.collection('users')
+			.doc(userId)
+			.collection('followers')
+			.doc(firebase.auth().currentUser.email)
+			.delete()
 
-    db
-     .collection('users')
-     .doc(firebase.auth().currentUser.email)
-     .collection('following')
-     .doc(userId)
-     .delete()
+		db.collection('users')
+			.doc(firebase.auth().currentUser.email)
+			.collection('following')
+			.doc(userId)
+			.delete()
 
-     .then(() => {
-       console.log('Successfully deleted follow !!!')
-       // navigation.navigate('ProfileScreen', { userId: userId })
-     })
-     .catch((error) => {
-       console.error('Error deleting document: ', error)
-     })
- }
-
-
+			.then(() => {
+				console.log('Successfully deleted follow !!!')
+				// navigation.navigate('ProfileScreen', { userId: userId })
+			})
+			.catch((error) => {
+				console.error('Error deleting document: ', error)
+			})
+	}
 
 	const FollowButton = () => (
 		<TouchableOpacity
@@ -94,13 +98,9 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 		</View>
 	)
 
-
 	const UserButtons = () => (
 		<View style={styles.buttonContainer}>
-		
-			{/* {isFollowing ? <FollowingButton /> : <FollowButton />} */}
-      <FollowButton />
-
+			{isFollowing ? <FollowingButton /> : <FollowButton />}
 
 			{/* message */}
 			<TouchableOpacity style={styles.button}>
