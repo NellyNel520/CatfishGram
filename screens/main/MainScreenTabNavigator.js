@@ -1,12 +1,12 @@
 import { View, Text, SafeAreaView, Image, StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React, { Component, useEffect, useState } from 'react'
-import { firebase, db } from '../firebase'
+import { firebase, db } from '../../firebase'
 // Screens
-import FeedScreen from './main/FeedScreen'
-import ProfileScreen from './main/ProfileScreen'
-import ReelsScreen from './main/ReelsScreen'
-import SearchScreen from './main/SearchScreen'
+import FeedScreen from './FeedScreen'
+import ProfileScreen from './ProfileScreen'
+import ReelsScreen from './ReelsScreen'
+import SearchScreen from './SearchScreen'
 
 const Tab = createBottomTabNavigator()
 

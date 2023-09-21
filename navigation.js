@@ -2,10 +2,11 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 // Screen Imports
-import LoginScreen from './screens/LoginScreen'
-import SignupScreen from './screens/SignupScreen'
-import MainScreen from './screens/MainScreen'
-
+import LoginScreen from './screens/auth/LoginScreen'
+import SignupScreen from './screens/auth/SignupScreen'
+import MainScreen from './screens/main/MainScreenTabNavigator'
+import NewPostScreen from './screens/NewPostScreen'
+import SubmitPostScreen from './screens/SubmitPostScreen'
 
 const Stack = createStackNavigator()
 
@@ -25,7 +26,6 @@ export const SignedOutStack = () => (
 	</NavigationContainer>
 )
 
-
 export const SignedInStack = () => (
 	<NavigationContainer>
 		<Stack.Navigator
@@ -33,10 +33,8 @@ export const SignedInStack = () => (
 			screenOptions={screenOptions}
 		>
 			<Stack.Screen name="MainScreen" component={MainScreen} />
-
-			
+			<Stack.Screen name="NewPostScreen" component={NewPostScreen} />
+			<Stack.Screen name="SubmitPostScreen" component={SubmitPostScreen} />
 		</Stack.Navigator>
 	</NavigationContainer>
 )
-
-
