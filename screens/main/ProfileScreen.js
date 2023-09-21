@@ -3,18 +3,17 @@ import {
 	Text,
 	SafeAreaView,
 	StyleSheet,
-	TouchableOpacity,
+	TouchableOpacity, 
 	Image,
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { db, firebase } from '../../firebase'
-
 // Components
+import Header from '../../components/profile/Header'
+import SubHeader from '../../components/profile/SubHeader'
 
 
-// use effect 
-// get user , followers, following
 
 const ProfileScreen = ({ navigation, route }) => {
   const { userId } = route.params
@@ -34,7 +33,8 @@ const ProfileScreen = ({ navigation, route }) => {
     .get()
     .then((snapshot) => {
       if (snapshot.exists) {
-        setUser({uid: uid, ...snapshot.data()})
+        setUser({userId: userId, ...snapshot.data()})
+        console.log(user)
       }
       setLoading(false)
     })
@@ -45,7 +45,7 @@ const ProfileScreen = ({ navigation, route }) => {
     .onSnapshot((snapshot) => {
       setUserPosts(snapshot.docs.map((post) => ({ id: post.id, ...post.data() })))
     })
-    // Checks if uid  is current user 
+    // Checks if userId  is current user 
     if (userId === firebase.auth().currentUser.email) {
       setIsCurrentUser(true)
     }
@@ -74,10 +74,21 @@ const ProfileScreen = ({ navigation, route }) => {
 
 
   return (
-    <SafeAreaView>
-      <Text>ProfileScreen</Text>
+    <SafeAreaView style={styles.container}>
+      <Header user={user} navigation={navigation}/>
+      <ScrollView>
+        <SubHeader user={user} userPosts={userPosts}/>
+      </ScrollView>
     </SafeAreaView>
   )
 }
+
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: 'black',
+		flex: 1,
+	},
+})
 
 export default ProfileScreen
