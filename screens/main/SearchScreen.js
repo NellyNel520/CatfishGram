@@ -63,7 +63,7 @@ const SearchScreen = ({navigation}) => {
 			{/* debating on using uid or email may switch later */}
 			<TouchableOpacity
 				onPress={() => {
-					navigation.navigate('SearchProfile', {
+					navigation.navigate('SearchProfileScreen', {
 						userId: item.email,
 					})
 				}}

@@ -154,14 +154,14 @@ const MainScreen = () => {
 						),
 					}}
 				/>
-				<Tab.Screen 
+				{/* <Tab.Screen 
 					name="SearchProfile"
 					component={SearchProfileScreen}
 					options={{
 						tabBarButton: () => null,
 						
 					}}
-				/>
+				/> */}
 				{/* <Tab.Screen
         name="Post"
         component={PostScreen}
