@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { firebase, db } from '../../firebase'
 // components
 import Header from '../../components/feed/Header'
+import Stories from '../../components/feed/Stories'
 
 
 
