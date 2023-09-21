@@ -13,6 +13,7 @@ import { db, firebase } from '../../firebase'
 import Header from '../../components/profile/Header'
 import SubHeader from '../../components/profile/SubHeader'
 import Bio from '../../components/profile/Bio'
+import Buttons from '../../components/profile/Buttons'
 
 
 
@@ -23,6 +24,7 @@ const ProfileScreen = ({ navigation, route }) => {
 	const [user, setUser] = useState({})
 	const [followers, setFollowers] = useState([])
 	const [following, setFollowing] = useState([])
+
 
 
 
@@ -75,6 +77,7 @@ const ProfileScreen = ({ navigation, route }) => {
       <ScrollView>
         <SubHeader user={user} userPosts={userPosts}/>
         <Bio user={user}/>
+        <Buttons userId={userId} isCurrentUser={isCurrentUser} followers={followers}/>
       </ScrollView>
     </SafeAreaView>
   )
