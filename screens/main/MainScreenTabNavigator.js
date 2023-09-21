@@ -7,7 +7,7 @@ import FeedScreen from './FeedScreen'
 import ProfileScreen from './ProfileScreen'
 import ReelsScreen from './ReelsScreen'
 import SearchScreen from './SearchScreen'
-
+import SearchProfileScreen from './SearchProfileScreen'
 const Tab = createBottomTabNavigator()
 
 const EmptyScreen = () => {
@@ -131,9 +131,8 @@ const MainScreen = () => {
 					listeners={({ navigation }) => ({
 						tabPress: (event) => {
 							event.preventDefault()
-							navigation.navigate('MainScreen', {
-								screen: 'Profile',
-								params: { userId: firebase.auth().currentUser.email },
+							navigation.navigate('Profile', {
+								 userId: firebase.auth().currentUser.email,
 							})
 							// navigation.navigate("Profile", {uid: firebase.auth().currentUser.email})
 						},
@@ -153,6 +152,14 @@ const MainScreen = () => {
 								}}
 							/>
 						),
+					}}
+				/>
+				<Tab.Screen 
+					name="SearchProfile"
+					component={SearchProfileScreen}
+					options={{
+						tabBarButton: () => null,
+						
 					}}
 				/>
 				{/* <Tab.Screen
