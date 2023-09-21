@@ -35,16 +35,14 @@ const postFooterIcons = [
 	},
 ]
 
-const Post = ({post}) => {
-  const [comments, setComments] = useState([])
+const Post = ({ post }) => {
+	const [comments, setComments] = useState([])
 	const [modalVisible, setModalVisible] = useState(false)
 
-  useEffect(() => {
+	useEffect(() => {
 		db.collection('posts')
-			.doc(firebase.auth().currentUser.email) 
-			.collection('userPosts')
-      .doc(post.id)
-      .collection('comments')
+			.doc(post.id)
+			.collection('comments')
 			.onSnapshot((snapshot) => {
 				setComments(
 					snapshot.docs.map((comment) => ({
@@ -52,7 +50,8 @@ const Post = ({post}) => {
 						...comment.data(),
 					}))
 				)
-			}) 
+			})
+	
 	}, [])
 
 	const handleLike = (post) => {
@@ -79,8 +78,7 @@ const Post = ({post}) => {
 			})
 	}
 
-
-  const PostHeader = ({ post }) => (
+	const PostHeader = ({ post }) => (
 		<View
 			style={{
 				flexDirection: 'row',
@@ -109,7 +107,7 @@ const Post = ({post}) => {
 		</View>
 	)
 
-  const PostImage = ({ post }) => (
+	const PostImage = ({ post }) => (
 		<View style={{ width: '100%', height: 510 }}>
 			<Image
 				source={{ uri: post.imageUrl }}
@@ -118,15 +116,12 @@ const Post = ({post}) => {
 		</View>
 	)
 
-
 	const PostFooter = ({ post, handleLike, comments }) => (
 		<View style={{ flexDirection: 'row' }}>
 			{/* Add modal here for link to comment section and form */}
 			{/* need to add comment header section too || all comments component already imported */}
 			<View style={styles.leftFooterIconContainer}>
-				<TouchableOpacity
-				onPress={() => handleLike(post)}
-				>
+				<TouchableOpacity onPress={() => handleLike(post)}>
 					<Image
 						style={styles.footerIcon}
 						source={{
@@ -160,9 +155,7 @@ const Post = ({post}) => {
 				</Modal>
 
 				{/* Add on press to trigger modal visibility */}
-				<TouchableOpacity
-				onPress={() => setModalVisible(true)}
-				>
+				<TouchableOpacity onPress={() => setModalVisible(true)}>
 					<Image
 						style={styles.footerIcon}
 						source={{
@@ -193,7 +186,7 @@ const Post = ({post}) => {
 		</View>
 	)
 
-  const CommentHeader = ({ modalVisible }) => (
+	const CommentHeader = ({ modalVisible }) => (
 		<View style={{ marginTop: 10 }}>
 			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
 				<TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
@@ -209,8 +202,7 @@ const Post = ({post}) => {
 		</View>
 	)
 
-
-  const Likes = ({ post }) => (
+	const Likes = ({ post }) => (
 		<View style={{ flexDirection: 'row', marginTop: 4 }}>
 			<Text style={{ color: 'white', fontWeight: 600 }}>
 				{post.likes_by_users.length.toLocaleString('en')} likes
@@ -228,24 +220,20 @@ const Post = ({post}) => {
 		</View>
 	)
 
-
-  return (
-    <ScrollView>
+	return (
+		<ScrollView>
 			<PostHeader post={post} />
 			<PostImage post={post} />
 			<View style={{ marginHorizontal: 2, marginTop: 10 }}>
-				<PostFooter post={post} comments={comments} handleLike={handleLike}/>
+				<PostFooter post={post} comments={comments} handleLike={handleLike} />
 				<Likes post={post} />
 				<Caption post={post} />
 
 				<CommentSection post={post} />
-
-
 			</View>
 		</ScrollView>
-  )
+	)
 }
-
 
 const styles = StyleSheet.create({
 	story: {
@@ -273,6 +261,5 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 	},
 })
-
 
 export default Post
