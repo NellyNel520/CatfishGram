@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
 		minHeight: 42,
 		borderRadius: 10,
 		backgroundColor: '#5A5A5A',
-		width: 185,
-		marginRight: 10,
+		width: 165,
+		marginHorizontal: 10,
 	},
 	follow: {
 		alignItems: 'center',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
 		minHeight: 42,
 		borderRadius: 10,
 		backgroundColor: '#0080FE',
-		width: 185,
+		width: 165,
 		marginRight: 10,
 	},
 	following: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
 		minHeight: 42,
 		borderRadius: 10,
 		backgroundColor: '#5A5A5A',
-		width: 185,
+		width: 165,
 		marginRight: 10,
 	},
 	iconButton: {
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		backgroundColor: '#5A5A5A',
 		padding: 5,
+		marginHorizontal: 10,
 	},
 	buttonText: {
 		fontWeight: 600,

@@ -55,6 +55,31 @@ const Post = ({post}) => {
 			}) 
 	}, [])
 
+	const handleLike = (post) => {
+		const currentLikeStatus = !post.likes_by_users.includes(
+			firebase.auth().currentUser.email
+		)
+
+		db.collection('posts')
+			.doc(post.id)
+			.update({
+				likes_by_users: currentLikeStatus
+					? firebase.firestore.FieldValue.arrayUnion(
+							firebase.auth().currentUser.email
+					  )
+					: firebase.firestore.FieldValue.arrayRemove(
+							firebase.auth().currentUser.email
+					  ),
+			})
+			.then(() => {
+				console.log('Successfully updated !!!')
+			})
+			.catch((error) => {
+				console.error('Error updating document: ', error)
+			})
+	}
+
+
   const PostHeader = ({ post }) => (
 		<View
 			style={{
@@ -100,7 +125,7 @@ const Post = ({post}) => {
 			{/* need to add comment header section too || all comments component already imported */}
 			<View style={styles.leftFooterIconContainer}>
 				<TouchableOpacity
-				// onPress={() => handleLike(post)}
+				onPress={() => handleLike(post)}
 				>
 					<Image
 						style={styles.footerIcon}
@@ -209,7 +234,7 @@ const Post = ({post}) => {
 			<PostHeader post={post} />
 			<PostImage post={post} />
 			<View style={{ marginHorizontal: 2, marginTop: 10 }}>
-				<PostFooter post={post} comments={comments}/>
+				<PostFooter post={post} comments={comments} handleLike={handleLike}/>
 				<Likes post={post} />
 				<Caption post={post} />
 
