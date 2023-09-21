@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react'
 import { firebase, db } from '../../firebase'
 
 const Buttons = ({ userId, isCurrentUser, followers }) => {
-	const [isFollowing, setIsFollowing] = useState(false)
 	// does followers contain current user email ? if so set isFollowing to true within useEffect
+	const [isFollowing, setIsFollowing] = useState()
 	useEffect(() => {
-		if (followers.indexOf(firebase.auth().currentUser.email) > -1) {
+		if (followers.includes(firebase.auth().currentUser.email)) {
 			setIsFollowing(true)
 		} else {
 			setIsFollowing(false)
@@ -30,7 +30,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 
 			.then(() => {
 				console.log('Successfully updated !!!')
-				setIsFollowing(true)
+				// setIsFollowing(true)
 				// navigation.navigate('ProfileScreen', { userId: userId })
 			})
 			.catch((error) => {
@@ -53,7 +53,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 
 			.then(() => {
 				console.log('Successfully deleted follow !!!')
-				setIsFollowing(false)
+				// setIsFollowing(false)
 				// navigation.navigate('ProfileScreen', { userId: userId })
 			})
 			.catch((error) => {
@@ -102,7 +102,11 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 
 	const UserButtons = () => (
 		<View style={styles.buttonContainer}>
-			{isFollowing ? <FollowingButton /> : <FollowButton />}
+			{followers.includes(firebase.auth().currentUser.email) ? (
+				<FollowingButton />
+			) : (
+				<FollowButton />
+			)}
 
 			{/* message */}
 			<TouchableOpacity style={styles.button}>
@@ -119,7 +123,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 			</TouchableOpacity>
 		</View>
 	)
- 
+
 	return (
 		<View style={{ marginTop: 40, flexDirection: 'row' }}>
 			{isCurrentUser ? <CurrentUserButtons /> : <UserButtons />}

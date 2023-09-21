@@ -37,6 +37,7 @@ const postFooterIcons = [
 
 const Post = ({ post }) => {
 	const [comments, setComments] = useState([])
+	const [isLiked, setIsLiked] = useState(false)
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
