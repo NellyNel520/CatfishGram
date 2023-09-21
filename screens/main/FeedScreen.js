@@ -19,8 +19,15 @@ const FeedScreen = () => {
 	}, []) 
 
   return (
-    <SafeAreaView  style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header />
+      <Stories />
+
+      <ScrollView>
+
+      </ScrollView>
+
+
     </SafeAreaView>
   )
 }
