@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { firebase } from '../../firebase'
+import { firebase, db } from '../../firebase'
 
 const Buttons = ({ userId, isCurrentUser, followers }) => {
 	const [isFollowing, setIsFollowing] = useState(false)
@@ -30,6 +30,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 
 			.then(() => {
 				console.log('Successfully updated !!!')
+				setIsFollowing(true)
 				// navigation.navigate('ProfileScreen', { userId: userId })
 			})
 			.catch((error) => {
@@ -52,6 +53,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 
 			.then(() => {
 				console.log('Successfully deleted follow !!!')
+				setIsFollowing(false)
 				// navigation.navigate('ProfileScreen', { userId: userId })
 			})
 			.catch((error) => {
@@ -117,7 +119,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 			</TouchableOpacity>
 		</View>
 	)
-
+ 
 	return (
 		<View style={{ marginTop: 40, flexDirection: 'row' }}>
 			{isCurrentUser ? <CurrentUserButtons /> : <UserButtons />}
