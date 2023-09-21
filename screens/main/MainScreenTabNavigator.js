@@ -133,7 +133,7 @@ const MainScreen = () => {
 							event.preventDefault()
 							navigation.navigate('MainScreen', {
 								screen: 'Profile',
-								params: { uid: firebase.auth().currentUser.email },
+								params: { userId: firebase.auth().currentUser.email },
 							})
 							// navigation.navigate("Profile", {uid: firebase.auth().currentUser.email})
 						},
