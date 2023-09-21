@@ -7,6 +7,7 @@ import SignupScreen from './screens/auth/SignupScreen'
 import MainScreen from './screens/main/MainScreenTabNavigator'
 import NewPostScreen from './screens/NewPostScreen'
 import SubmitPostScreen from './screens/SubmitPostScreen'
+import PostScreen from './screens/PostScreen'
 
 const Stack = createStackNavigator()
 
@@ -35,6 +36,7 @@ export const SignedInStack = () => (
 			<Stack.Screen name="MainScreen" component={MainScreen} />
 			<Stack.Screen name="NewPostScreen" component={NewPostScreen} />
 			<Stack.Screen name="SubmitPostScreen" component={SubmitPostScreen} />
+			<Stack.Screen name="PostScreen" component={PostScreen} />
 		</Stack.Navigator>
 	</NavigationContainer>
 )

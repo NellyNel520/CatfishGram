@@ -65,7 +65,7 @@ const PostGrid = ({ navigation, userPosts }) => {
 						onPress={() => {
 							navigation.navigate('PostScreen', {
 								post: post,
-								username: post.user,
+								
 							})
 						}}
 					>

@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image, Text } from 'react-native'
 import React from 'react'
-import SignupForm from '../../components/SignupForm'
+import SignupForm from '../../components/auth/SignupForm'
 
 const INSTAGRAM_LOGO = 'https://img.icons8.com/fluency/96/instagram-new.png'
 
