@@ -4,10 +4,11 @@ import { firebase, db } from '../../firebase'
 // components
 import Header from '../../components/feed/Header'
 import Stories from '../../components/feed/Stories'
+import Post from '../../components/post/Post'
 
 
 
-const FeedScreen = () => {
+const FeedScreen = ({navigation}) => {
   const [posts, setPosts] = useState([])
 
 	const currentUser = firebase.auth().currentUser.email
@@ -23,8 +24,11 @@ const FeedScreen = () => {
       <Header />
       <Stories />
 
-      <ScrollView>
-
+      
+			<ScrollView>
+				{posts.map((post, index) => (
+					<Post post={post} key={index} navigation={navigation}/>
+				))}
       </ScrollView>
 
 
