@@ -27,7 +27,7 @@ const Header = ({navigation}) => {
           <Image style={styles.icon} source={{uri: 'https://img.icons8.com/material-outlined/24/ffffff/like--v1.png'}}/>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('InboxScreen')}>
         <View style={styles.unreadBadge}>
           <Text style={styles.undreadBadgeText}>15</Text>
         </View>

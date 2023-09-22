@@ -14,10 +14,7 @@ const ChatScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{color: 'white'}}>ChatScreen</Text>
-      {/* header */}
-      {/* search bar */}
-      {/* stories for notes */}
-      {/* messages flatlist */}
+    
     </SafeAreaView>
   )
 }
