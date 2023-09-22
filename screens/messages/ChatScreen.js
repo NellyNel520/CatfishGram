@@ -1,12 +1,33 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import {
+	View,
+	Text,
+	SafeAreaView,
+	StyleSheet,
+	TouchableOpacity,
+	Image,
+} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { ScrollView } from 'react-native-gesture-handler'
+import { db, firebase } from '../../firebase'
 
 const ChatScreen = () => {
   return (
-    <View>
-      <Text>ChatScreen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Text style={{color: 'white'}}>ChatScreen</Text>
+      {/* header */}
+      {/* search bar */}
+      {/* stories for notes */}
+      {/* messages flatlist */}
+    </SafeAreaView>
   )
 }
+
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: 'black',
+		flex: 1,
+	},
+})
 
 export default ChatScreen

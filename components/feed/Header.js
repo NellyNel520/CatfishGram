@@ -13,7 +13,7 @@ const handleSignout = async () => {
 	}
 }
 
-const Header = () => {
+const Header = ({navigation}) => {
   return (
     <View style={styles.container}>
       {/* Logo */}
@@ -27,7 +27,7 @@ const Header = () => {
           <Image style={styles.icon} source={{uri: 'https://img.icons8.com/material-outlined/24/ffffff/like--v1.png'}}/>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <View style={styles.unreadBadge}>
           <Text style={styles.undreadBadgeText}>15</Text>
         </View>

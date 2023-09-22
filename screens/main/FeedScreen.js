@@ -21,7 +21,7 @@ const FeedScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Header navigation={navigation}/>
       <Stories />
 
       
