@@ -130,7 +130,7 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 				})
 			}
 			// then navigate to chat screen with required params
-			// navigation.navigate('')
+			navigation.navigate('ChatScreen', {user: user, currentUser: currentUser})
 		} catch (err) {}
 	}
 

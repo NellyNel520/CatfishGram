@@ -9,7 +9,7 @@ const ChatHeader = ({ navigation, user }) => {
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row' }}>
-				<TouchableOpacity style={{ marginRight: 10, marginVertical: 10 }}>
+				<TouchableOpacity style={{ marginRight: 10, marginVertical: 10 }} onPress={() => navigation.goBack()}>
 					<Image
 						source={{
 							uri: 'https://img.icons8.com/ios/90/ffffff/back--v1.png',
