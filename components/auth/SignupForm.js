@@ -12,6 +12,7 @@ import * as Yup from 'yup'
 import { Formik } from 'formik'
 import Validator from 'email-validator'
 import { firebase, db } from '../../firebase'
+import { doc, setDoc } from 'firebase/firestore'
 
 const signupFormSchema = Yup.object().shape({
 	email: Yup.string().email().required('An email'),
@@ -47,6 +48,8 @@ const onSignup = async (email, password, username, name) => {
 				bio: '',
 				name: name,
 			})
+			// creates blank userchats collection for user 
+			await setDoc(doc(db, "userChats", authUser.user.email), {})
 	} catch (error) {
 		Alert.alert('Opps ...', error.message)
 	}
