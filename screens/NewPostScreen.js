@@ -71,14 +71,17 @@ const NewPostScreen = ({ navigation }) => {
 	const Buttons = ({ navigation }) => (
 		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 			<View style={{ flexDirection: 'row' }}>
+			{/* Flip Camera */}
 				<TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-					<Text style={styles.text}>Flip Camera</Text>
+					<Image source={{uri: 'https://img.icons8.com/ios-glyphs/30/A79F9F/refresh--v1.png'}} style={{width: 60, height: 60}}/>
 				</TouchableOpacity>
+				{/* Take Picture */}
 				<TouchableOpacity style={styles.button} onPress={() => takePicture()}>
-					<Text style={styles.text}>Take Picture</Text>
+					<Image source={{uri: 'https://img.icons8.com/nolan/64/filled-circle.png'}} style={{width: 100, height: 110}}/>
 				</TouchableOpacity>
+				{/* Pick an image */}
 				<TouchableOpacity style={styles.button} onPress={pickImage}>
-					<Text style={styles.text}>Pick an image</Text>
+					<Image source={{uri: 'https://img.icons8.com/sf-regular-filled/48/A79F9F/image.png'}} style={{width: 60, height: 60}}/>
 				</TouchableOpacity>
 			</View>
 			{image && (
