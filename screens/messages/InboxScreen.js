@@ -54,7 +54,7 @@ const InboxScreen = ({ navigation }) => {
 			{/* search bar */}
 
 			{/* messages flatlist */}
-			<View style={{marginTop: 30,}}>
+			<ScrollView style={{marginTop: 30,}}>
 				{Object.entries(chats)
 					?.sort((a, b) => b[1].date - a[1].date)
 					.map((chat) => (
@@ -62,10 +62,14 @@ const InboxScreen = ({ navigation }) => {
 							key={chat[0]}
 							style={{
 								flexDirection: 'row',
-								marginBottom: 10,
+								marginBottom: 15,
 							}}
 						>
-							<TouchableOpacity style={{flexDirection: 'row'}}>
+							<TouchableOpacity 
+              style={{flexDirection: 'row'}}
+              // on press nav to chat screen with required params (chat[1].userInfo)
+              onPress={() => navigation.navigate('ChatScreen', {user: chat[1].userInfo, currentUser: currentUser})}
+              >
 								{/* user profile image */}
 								<Image
 									source={{ uri: chat[1].userInfo.profile_picture }}
@@ -79,7 +83,7 @@ const InboxScreen = ({ navigation }) => {
 							</TouchableOpacity>
 						</View>
 					))}
-			</View>
+			</ScrollView>
 		</SafeAreaView>
 	)
 }
@@ -99,4 +103,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default InboxScreen
+export default InboxScreen 

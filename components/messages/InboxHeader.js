@@ -11,7 +11,7 @@ const InboxHeader = ({ navigation, currentUser }) => {
 			<View style={{flexDirection: 'row'}}>
 				{/* back arrow */}
 				<TouchableOpacity onPress={() => navigation.goBack()}>
-					<Image
+					<Image 
 						source={{
 							uri: 'https://img.icons8.com/ios/90/ffffff/back--v1.png',
 						}}

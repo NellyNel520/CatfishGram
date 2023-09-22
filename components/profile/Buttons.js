@@ -97,9 +97,10 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 
 	// handel message
 	const handelMessage = async () => {
-		const date = new Date()
-		const timestamp = date.getTime()
-		const combinedId = currentUser.username + user.username + timestamp
+		const combinedId =
+			currentUser.owner_uid > user.owner_uid
+				? currentUser.owner_uid + user.owner_uid
+				: user.owner_uid + currentUser.owner_uid
 
 		try {
 			const res = await getDoc(doc(db, 'chats', combinedId))
@@ -108,27 +109,25 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 				await setDoc(doc(db, 'chats', combinedId), { messages: [] })
 
 				//create user chats for both users in the chat
-				await updateDoc(
-					doc(db, 'userChats', currentUser.email),
-					{
-						[combinedId + '.userInfo']: {
-							email: userId,
-							username: user.username,
-							profile_picture: user.profile_picture,
-						},
-						[combinedId + '.date']: serverTimestamp(),
-					}
-				)
+				await updateDoc(doc(db, 'userChats', currentUser.email), {
+					[combinedId + '.userInfo']: {
+						email: userId,
+						username: user.username,
+						profile_picture: user.profile_picture,
+						name: user.name,
+					},
+					[combinedId + '.date']: serverTimestamp(),
+				})
 
 				await updateDoc(doc(db, 'userChats', userId), {
 					[combinedId + '.userInfo']: {
 						email: firebase.auth().currentUser.email,
 						username: currentUser.username,
 						profile_picture: currentUser.profile_picture,
+						name: currentUser.name
 					},
 					[combinedId + '.date']: serverTimestamp(),
 				})
-
 			}
 			// then navigate to chat screen with required params
 			// navigation.navigate('')
