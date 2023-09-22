@@ -1,16 +1,50 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
+import {
+	collection,
+	query,
+	where,
+	getDocs,
+	setDoc,
+	doc,
+	updateDoc,
+	serverTimestamp,
+	getDoc,
+} from 'firebase/firestore'
 import { firebase, db } from '../../firebase'
 
-const Buttons = ({ userId, isCurrentUser, followers }) => {
+const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 	// does followers contain current user email ? if so set isFollowing to true within useEffect
 	const [isFollowing, setIsFollowing] = useState()
+	const [currentUser, setCurrentUser] = useState({})
+
+	const getCurrentUser = () => {
+		const subscribe = db
+			.collection('users')
+			.doc(firebase.auth().currentUser.email)
+			.get()
+			.then((doc) => {
+				if (doc.exists) {
+					console.log('Document data:', doc.data())
+					setCurrentUser(doc.data())
+				} else {
+					console.log('No such document!')
+				}
+			})
+			.catch((error) => {
+				console.log('Error getting document:', error)
+			})
+
+		return subscribe
+	}
+
 	useEffect(() => {
 		if (followers.includes(firebase.auth().currentUser.email)) {
 			setIsFollowing(true)
 		} else {
 			setIsFollowing(false)
 		}
+		getCurrentUser()
 	}, [])
 
 	// handel follow & unfollow functions
@@ -61,6 +95,45 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 			})
 	}
 
+	// handel message
+	const handelMessage = async () => {
+		const date = new Date()
+		const timestamp = date.getTime()
+		const combinedId = currentUser.username + user.username + timestamp
+
+		try {
+			const res = await getDoc(doc(db, 'chats', combinedId))
+			if (!res.exists()) {
+				//create a chat in chats collection
+				await setDoc(doc(db, 'chats', combinedId), { messages: [] })
+
+				//create user chats for both users in the chat
+				await updateDoc(
+					doc(db, 'userChats', currentUser.email),
+					{
+						[combinedId + '.userInfo']: {
+							email: userId,
+							username: user.username,
+							profile_picture: user.profile_picture,
+						},
+						[combinedId + '.date']: serverTimestamp(),
+					}
+				)
+
+				await updateDoc(doc(db, 'userChats', userId), {
+					[combinedId + '.userInfo']: {
+						email: firebase.auth().currentUser.email,
+						username: currentUser.username,
+						profile_picture: currentUser.profile_picture,
+					},
+					[combinedId + '.date']: serverTimestamp(),
+				})
+
+			}
+			// then navigate to chat screen 
+		} catch (err) {}
+	}
+
 	const FollowButton = () => (
 		<TouchableOpacity
 			style={styles.follow}
@@ -109,7 +182,7 @@ const Buttons = ({ userId, isCurrentUser, followers }) => {
 			)}
 
 			{/* message */}
-			<TouchableOpacity style={styles.button}>
+			<TouchableOpacity style={styles.button} onPress={handelMessage}>
 				<Text style={styles.buttonText}>Message</Text>
 			</TouchableOpacity>
 

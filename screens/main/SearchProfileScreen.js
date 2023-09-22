@@ -54,9 +54,7 @@ const SearchProfileScreen = ({ navigation, route }) => {
 		return unsubscribe
 	}
 
-  const getFollowers = () => {
-
-  }
+  
 
 
 	useEffect( () => {
@@ -116,9 +114,11 @@ const SearchProfileScreen = ({ navigation, route }) => {
 				<Bio user={user} />
 				<Buttons
 					userId={userId}
+					user={user}
 					isCurrentUser={isCurrentUser}
           followers={followers}
-					// isFollowing={isFollowing}
+					navigation={navigation}
+				
 				/>
 				<PostGrid userPosts={userPosts} navigation={navigation} />
 			</ScrollView>

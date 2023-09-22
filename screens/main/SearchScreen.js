@@ -80,7 +80,7 @@ const SearchScreen = ({navigation}) => {
 			<TouchableOpacity
 				onPress={() => {
 					navigation.navigate('SearchProfileScreen', {
-						uid: item.email,
+						userId: item.email,
 					})
 				}}
 			>
