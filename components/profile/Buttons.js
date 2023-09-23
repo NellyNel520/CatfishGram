@@ -98,7 +98,7 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 	// handel message
 	const handelMessage = async () => {
 		const combinedId =
-			currentUser.owner_uid > user.owner_uid
+			currentUser.username.length > user.username.length
 				? currentUser.owner_uid + user.owner_uid
 				: user.owner_uid + currentUser.owner_uid
 
@@ -115,6 +115,7 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 						username: user.username,
 						profile_picture: user.profile_picture,
 						name: user.name,
+						owner_uid: user.owner_uid
 					},
 					[combinedId + '.date']: serverTimestamp(),
 				})
@@ -124,13 +125,14 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 						email: firebase.auth().currentUser.email,
 						username: currentUser.username,
 						profile_picture: currentUser.profile_picture,
-						name: currentUser.name
+						name: currentUser.name,
+						owner_uid: currentUser.owner_uid
 					},
 					[combinedId + '.date']: serverTimestamp(),
 				})
 			}
 			// then navigate to chat screen with required params
-			navigation.navigate('ChatScreen', {user: user, currentUser: currentUser})
+			navigation.navigate('ChatScreen', {user, currentUser})
 		} catch (err) {}
 	}
 

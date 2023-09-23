@@ -44,7 +44,7 @@ const CommentForm = ({ post }) => {
 				console.log('Error getting document:', error)
 			})
 		return unsubscribe
-	}
+	} 
 
 	useEffect(() => {
 		getUsername()

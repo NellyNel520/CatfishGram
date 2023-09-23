@@ -65,7 +65,7 @@ const SubmitPostScreen = ({ navigation, route }) => {
 	}
 
 	useEffect(() => {
-		getUsername()
+		getUsername() 
 		console.log(username)
 		console.log(profilePic)
 	}, [])
