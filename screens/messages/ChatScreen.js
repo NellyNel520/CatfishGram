@@ -15,7 +15,7 @@ import { db, firebase } from '../../firebase'
 import ChatHeader from '../../components/messages/ChatHeader'
 import Messages from '../../components/messages/Messages'
 import MessageForm from '../../components/messages/MessageForm'
-import MessageForm2 from '../../components/messages/MessageForm2'
+
 
 const ChatScreen = ({ navigation, route }) => {
 	const { user, currentUser,   } = route.params 
@@ -39,7 +39,7 @@ const ChatScreen = ({ navigation, route }) => {
 			{/* Text Input */}
 
       <MessageForm combinedId={combinedId} user={user} currentUser={currentUser} setClicked={setClicked} clicked={clicked}/>
-      {/* <MessageForm2 combinedId={combinedId} user={user} currentUser={currentUser} setClicked={setClicked} clicked={clicked}/> */}
+    
 		</SafeAreaView>
 	)
 }
