@@ -62,7 +62,7 @@ const CommentForm = ({ post }) => {
 				owner_uid: firebase.auth().currentUser.uid,
 				owner_email: firebase.auth().currentUser.email,
 				createdAt: new Date(),
-				likes_by_users: [],
+				likes_by_users: [], 
 			})
 
 		return unsubscribe

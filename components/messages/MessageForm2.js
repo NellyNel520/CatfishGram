@@ -29,8 +29,8 @@ const MessageForm2 = ({
 }) => {
 	const [text, setText] = useState('')
 	const [image, setImage] = useState(null)
-  const date = new Date
-  const timestamp = date.getTime()
+	const date = new Date()
+	const timestamp = date.getTime()
 	// console.log(combinedId, 'form')
 
 	const pickImage = async () => {
@@ -120,9 +120,15 @@ const MessageForm2 = ({
 			},
 			[combinedId + '.date']: serverTimestamp(),
 		})
+    // .then(() => {
+		// 	setText('')
+		// 	setImage(null)
+		// })
 
-		setImage(null)
+		setText('')
+    setImage(null)
 	}
+	console.log(clicked)
 	return (
 		<View style={styles.wrapper}>
 			<View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -149,7 +155,8 @@ const MessageForm2 = ({
 						onFocus={() => {
 							setClicked(true)
 						}}
-					></TextInput>
+						// ref={this.textInput}
+					/>
 					{/* conditionally render image if selected */}
 					{image && (
 						<View>

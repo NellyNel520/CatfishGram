@@ -3,7 +3,7 @@ import {
 	Text,
 	Image,
 	TextInput,
-	Button,
+	Button, 
 	StyleSheet,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
@@ -36,6 +36,8 @@ const MessageForm = ({
 }) => {
 	const [image, setImage] = useState(null)
 	const [err, setErr] = useState(false)
+	const date = new Date()
+	const timestamp = date.getTime()
 
 	const pickImage = async () => {
 		// No permissions request is necessary for launching the image library
@@ -53,8 +55,7 @@ const MessageForm = ({
 		}
 	}
 
-	const sendMessage = async () => {
-		const date = new Date().getTime()
+	const sendMessage = async (image, message) => {
 		if (image) {
 			const storageRef = ref(
 				storage,
@@ -91,10 +92,10 @@ const MessageForm = ({
 					getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
 						await updateDoc(doc(db, 'chats', combinedId), {
 							messages: arrayUnion({
-								id: currentUser.owner_uid + date,
+								id: currentUser.owner_uid + timestamp,
 								message,
 								senderId: currentUser.uid,
-								date: Timestamp.now(),
+								date: date,
 								image: downloadURL,
 							}),
 						})
@@ -104,10 +105,10 @@ const MessageForm = ({
 		} else {
 			await updateDoc(doc(db, 'chats', combinedId), {
 				messages: arrayUnion({
-					id: currentUser.owner_uid + date,
+					id: currentUser.owner_uid + timestamp,
 					message,
 					senderId: currentUser.uid,
-					date: Timestamp.now(),
+					date: date,
 				}),
 			})
 		}
@@ -124,17 +125,22 @@ const MessageForm = ({
 				message,
 			},
 			[combinedId + '.date']: serverTimestamp(),
-		})
+		}) 
 
-		setImage(null)
+		// setText('')
+		// setImage(null)
 	}
 
 	return (
 		<View>
 			<Formik
 				initialValues={{ message: '' }}
-				onSubmit={(values) => {
+				onSubmit={(values, ) => {
 					sendMessage(image, values.message)
+					setImage(null)
+					// resetForm({values: initialValues})
+
+
 					// console.log(values)
 					// console.log('Your Post was submitted successfully 🎉')
 				}}

@@ -1,4 +1,4 @@
-import {
+import { 
 	View,
 	Text,
 	SafeAreaView,
@@ -11,9 +11,10 @@ import React, {  useEffect, useState } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db, firebase } from '../../firebase'
 // Components
+import Message from './Message'
 
 
-const Messages = ({combinedId}) => {
+const Messages = ({combinedId, user, currentUser}) => {
   // need chat id
   const [messages, setMessages] = useState([])
 
@@ -22,18 +23,22 @@ const Messages = ({combinedId}) => {
       doc.exists() && setMessages(doc.data().messages)
     })
 
-    return () => {
+    // console.log(messages)
+
+    return () => { 
       subscribe
     }
   }, [combinedId])
 
   // no messages yet **add condition to see if there are any messages add styling for no messages yet****
-  // console.log(messages)
+  console.log(messages)
 
 
   return (
     <ScrollView style={styles.container}>
-      <Text>Messages</Text>
+      {messages.map((message) => (
+				<Message message={message} key={message.id}  user={user} currentUser={currentUser}/>
+			))}
     </ScrollView>
   )
 }
@@ -41,6 +46,7 @@ const Messages = ({combinedId}) => {
 const styles = StyleSheet.create({
   container: {
     height: '80%',
+    padding: 10
   }
 })
 
