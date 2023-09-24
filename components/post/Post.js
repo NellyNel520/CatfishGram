@@ -35,7 +35,7 @@ const postFooterIcons = [
 	},
 ]
 
-const Post = ({ post }) => {
+const Post = ({ post, navigation }) => {
 	const [comments, setComments] = useState([])
 	const [isLiked, setIsLiked] = useState(false)
 	const [modalVisible, setModalVisible] = useState(false)
@@ -52,7 +52,6 @@ const Post = ({ post }) => {
 					}))
 				)
 			})
-	
 	}, [])
 
 	const handleLike = (post) => {
@@ -83,19 +82,23 @@ const Post = ({ post }) => {
 		<View
 			style={{
 				flexDirection: 'row',
-				justifyContent: 'space-between',
+				justifyContent: 'space-between', 
 				// margin: 5,
 				marginTop: 16,
 				marginBottom: 10,
 				alignItems: 'center',
 			}}
 		>
-			<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-				<Image source={{ uri: post.profile_picture }} style={styles.story} />
-				<Text style={{ color: 'white', marginLeft: 5, fontWeight: '700' }}>
-					{post.user}
-				</Text>
-			</View>
+			<TouchableOpacity onPress={() => navigation.navigate('SearchProfileScreen', {
+				userId: post.owner_email
+			})}>
+				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+					<Image source={{ uri: post.profile_picture }} style={styles.story} />
+					<Text style={{ color: 'white', marginLeft: 5, fontWeight: '700' }}>
+						{post.user}
+					</Text>
+				</View>
+			</TouchableOpacity>
 
 			<TouchableOpacity>
 				<Image

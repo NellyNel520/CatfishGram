@@ -14,7 +14,6 @@ import { firebase, db } from '../../firebase'
 // components \\
 import CommentForm from './CommentForm'
 
-
 const likeIcons = [
 	{
 		imageUrl: 'https://img.icons8.com/ios/50/ffffff/like--v1.png',
@@ -23,8 +22,7 @@ const likeIcons = [
 ]
 
 const AllComments = ({ post, comments }) => {
-
-  const handleCommentLike = (comment) => {
+	const handleCommentLike = (comment) => {
 		const currentLikeStatus = !comment.likes_by_users.includes(
 			firebase.auth().currentUser.email
 		)
@@ -50,7 +48,7 @@ const AllComments = ({ post, comments }) => {
 			})
 	}
 
-  const LikeButton = ({ comment, handleCommentLike }) => (
+	const LikeButton = ({ comment, handleCommentLike }) => (
 		<TouchableOpacity onPress={() => handleCommentLike(comment)}>
 			<Image
 				source={{
@@ -64,86 +62,86 @@ const AllComments = ({ post, comments }) => {
 			/>
 		</TouchableOpacity>
 	)
-  return (
-    <View>
-    <View style={{ marginHorizontal: 7, marginTop: 25, height: '100%' }}>
-      <ScrollView>
-      {/* style layout needs work so text input pushes up above keyboard and not hidden for add comment form in modal */}
-      
-        {comments.length > 0 ? (
-          comments.map((comment, index) => (
-            <View key={index} style={{ marginBottom: 20, height: '100%' }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <TouchableOpacity>
-                    <Image
-                      source={{ uri: comment.profile_picture }}
-                      style={styles.story}
-                    />
-                  </TouchableOpacity>
+	return (
+		<View>
+			<View style={{ marginHorizontal: 7, marginTop: 25, height: '100%' }}>
+				<ScrollView>
+					{/* style layout needs work so text input pushes up above keyboard and not hidden for add comment form in modal */}
 
-                  <View style={{ marginLeft: 8 }}>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text
-                        style={{
-                          fontWeight: 600,
-                          color: 'white',
-                          fontSize: 15,
-                          marginRight: 3,
-                        }}
-                      >
-                        {comment.user}
-                      </Text>
-                      {/* instal timeago package to convert timestamp */}
-                      <Text>15h</Text>
-                      {/* not working as expected will revisit */}
-                      {/* <Text>{moment(comment.createdAt).fromNow()}</Text> */}
-                    </View>
+					{comments.length > 0 ? (
+						comments.map((comment, index) => (
+							<View key={index} style={{ height: '100%' }}>
+								<View
+									style={{
+										flexDirection: 'row',
+										justifyContent: 'space-between',
+									}}
+								>
+									<View style={{ flexDirection: 'row' }}>
+										<TouchableOpacity>
+											<Image
+												source={{ uri: comment.profile_picture }}
+												style={styles.story}
+											/>
+										</TouchableOpacity>
 
-                    <Text
-                      style={{ fontSize: 16, color: 'white', marginTop: 4 }}
-                    >
-                      {comment.comment}
-                    </Text>
+										<View style={{ marginLeft: 8 }}>
+											<View style={{ flexDirection: 'row' }}>
+												<Text
+													style={{
+														fontWeight: 600,
+														color: 'white',
+														fontSize: 15,
+														marginRight: 3,
+													}}
+												>
+													{comment.user}
+												</Text>
+												{/* instal timeago package to convert timestamp */}
+												<Text>15h</Text>
+												{/* not working as expected will revisit */}
+												{/* <Text>{moment(comment.createdAt).fromNow()}</Text> */}
+											</View>
 
-                    {/* likes with conditional statement same in post componnt like section*/}
+											<Text
+												style={{ fontSize: 16, color: 'white', marginTop: 4 }}
+											>
+												{comment.comment}
+											</Text>
 
-                    {comment.likes_by_users.length > 0 ? (
-                      <Text>
-                        <Text>{comment.likes_by_users.length} </Text>
-                        <Text style={{ textDecorationLine: 'underline' }}>
-                          likes
-                        </Text>
-                      </Text>
-                    ) : null}
-                  </View>
-                </View>
+											{/* likes with conditional statement same in post componnt like section*/}
 
-                {/* handle like function */}
-                <View>
-                  <LikeButton
-                    comment={comment}
-                    handleCommentLike={handleCommentLike}
-                  />
-                </View>
-              </View>
-            </View>
-          ))
-        ) : (
-          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 20 }}>No Comments</Text>
-          </View>
-        )}
-      </ScrollView>
-      <CommentForm post={post} />
-    </View>
-  </View>
-  )
+											{comment.likes_by_users.length > 0 ? (
+												<Text>
+													<Text>{comment.likes_by_users.length} </Text>
+													<Text style={{ textDecorationLine: 'underline' }}>
+														likes
+													</Text>
+												</Text>
+											) : null}
+										</View>
+									</View>
+
+									{/* handle like function */}
+									<View>
+										<LikeButton
+											comment={comment}
+											handleCommentLike={handleCommentLike}
+										/>
+									</View>
+								</View>
+							</View>
+						))
+					) : (
+						<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+							<Text style={{ fontSize: 20 }}>No Comments</Text>
+						</View>
+					)}
+				</ScrollView>
+				<CommentForm post={post} />
+			</View>
+		</View>
+	)
 }
 
 const styles = StyleSheet.create({
@@ -156,6 +154,5 @@ const styles = StyleSheet.create({
 		borderColor: '#ff8501',
 	},
 })
-
 
 export default AllComments

@@ -4,9 +4,9 @@ import { firebase, db } from '../../firebase'
 
 const Message = ({ message, user, currentUser, ref }) => {
 	const [isOwner, setIsOwner] = useState(false)
-	const photo = message.image
 
-	//
+
+
 	useEffect(() => {
 		if (message.senderId === currentUser.email) {
 			setIsOwner(true)
@@ -23,7 +23,7 @@ const Message = ({ message, user, currentUser, ref }) => {
 					style={{ width: 40, height: 40, borderRadius: 50 }}
 				/>
 				{/* replace with time stamp (time ago?) */}
-				<Text style={{ color: 'white', fontWeight: 300 }}>Just now</Text>
+				{/* <Text style={{ color: 'white', fontWeight: 300 }}>Just now</Text> */}
 			</View>
 
 			{/* message content */}
@@ -46,7 +46,7 @@ const Message = ({ message, user, currentUser, ref }) => {
 					style={{ width: 40, height: 40, borderRadius: 50 }}
 				/>
 				{/* replace with time stamp (time ago?) */}
-				<Text style={{ color: 'white', fontWeight: 300 }}>Just now</Text>
+				{/* <Text style={{ color: 'white', fontWeight: 300 }}>Just now</Text> */}
 			</View>
 <View>
 			{/* message content */}
@@ -57,7 +57,7 @@ const Message = ({ message, user, currentUser, ref }) => {
 			{message.image ? (
 				<Image
 					source={{ uri: message.image }}
-					style={{ width: 220, height: 220 }}
+					style={{ width: 220, height: 220, borderRadius: 15 }}
 				/>
 			) : null}
       </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 		borderBottomLeftRadius: 20,
 		borderBottomRightRadius: 20,
 		borderTopRightRadius: 20,
-    
+
 	},
 	ownerMessageContainer: {
 		borderWidth: 2,

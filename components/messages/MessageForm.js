@@ -119,7 +119,7 @@ const MessageForm = ({
 
 		await updateDoc(doc(db, 'userChats', currentUser.uid), {
 			[combinedId + '.lastMessage']: {
-				text,
+				text, 
 			},
 			[combinedId + '.date']: serverTimestamp(),
 		})
