@@ -6,13 +6,12 @@ import {
 	Button, 
 	StyleSheet,
 	KeyboardAvoidingView,
-	TouchableWithoutFeedback,
+	TouchableOpacity,
 	Keyboard,
 } from 'react-native'
-import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
-import { firebase, db } from '../../firebase'
+import { firebase, db, storage } from '../../firebase'
 import {
 	arrayUnion,
 	doc,
@@ -20,8 +19,9 @@ import {
 	Timestamp,
 	updateDoc,
 } from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import * as ImagePicker from 'expo-image-picker'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const uploadMessageSchema = Yup.object().shape({
 	message: Yup.string().max(4200, 'Comment has reached the character limit'),
@@ -55,14 +55,18 @@ const MessageForm = ({
 		}
 	}
 
-	const sendMessage = async (image, message) => {
+	const sendMessage = async (image, text) => {
 		if (image) {
+			const uri = image
+			const response = await fetch(uri)
+			const blob = await response.blob()
 			const storageRef = ref(
 				storage,
-				`${firebase.auth().currentUser.email + date}`
+				`${firebase.auth().currentUser.email + timestamp}`
+				// 	`${firebase.auth().currentUser.email + 'messageto' + user.email + timestamp}`
 			)
 
-			const uploadTask = uploadBytesResumable(storageRef, image)
+			const uploadTask = uploadBytesResumable(storageRef, blob)
 
 			// Register three observers:
 			// 1. 'state_changed' observer, called any time the state changes
@@ -93,7 +97,7 @@ const MessageForm = ({
 						await updateDoc(doc(db, 'chats', combinedId), {
 							messages: arrayUnion({
 								id: currentUser.owner_uid + timestamp,
-								message,
+								text,
 								senderId: currentUser.uid,
 								date: date,
 								image: downloadURL,
@@ -106,7 +110,7 @@ const MessageForm = ({
 			await updateDoc(doc(db, 'chats', combinedId), {
 				messages: arrayUnion({
 					id: currentUser.owner_uid + timestamp,
-					message,
+					text,
 					senderId: currentUser.uid,
 					date: date,
 				}),
@@ -115,14 +119,14 @@ const MessageForm = ({
 
 		await updateDoc(doc(db, 'userChats', currentUser.uid), {
 			[combinedId + '.lastMessage']: {
-				message,
+				text,
 			},
 			[combinedId + '.date']: serverTimestamp(),
 		})
 
 		await updateDoc(doc(db, 'userChats', user.uid), {
 			[combinedId + '.lastMessage']: {
-				message,
+				text,
 			},
 			[combinedId + '.date']: serverTimestamp(),
 		}) 
@@ -134,9 +138,9 @@ const MessageForm = ({
 	return (
 		<View>
 			<Formik
-				initialValues={{ message: '' }}
+				initialValues={{ text: '' }}
 				onSubmit={(values, ) => {
-					sendMessage(image, values.message)
+					sendMessage(image, values.text)
 					setImage(null)
 					// resetForm({values: initialValues})
 
@@ -176,9 +180,9 @@ const MessageForm = ({
 										placeholder="Message..."
 										placeholderTextColor="gray"
 										multiline={true}
-										onChangeText={handleChange('message')}
-										onBlur={handleBlur('message')}
-										value={values.message}
+										onChangeText={handleChange('text')}
+										onBlur={handleBlur('text')}
+										value={values.text}
 										onFocus={() => {
 											setClicked(true)
 										}}

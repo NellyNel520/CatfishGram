@@ -18,6 +18,7 @@ import {
 	Timestamp,
 	updateDoc,
 } from 'firebase/firestore'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import * as ImagePicker from 'expo-image-picker'
 
 const MessageForm2 = ({
@@ -29,6 +30,7 @@ const MessageForm2 = ({
 }) => {
 	const [text, setText] = useState('')
 	const [image, setImage] = useState(null)
+	const [err, setErr] = useState(false)
 	const date = new Date()
 	const timestamp = date.getTime()
 	// console.log(combinedId, 'form')
@@ -49,14 +51,18 @@ const MessageForm2 = ({
 		}
 	}
 
-	const sendMessage = async () => {
+	const sendMessage = async (image, text) => {
 		if (image) {
+			const uri = image
+			const response = await fetch(uri)
+			const blob = await response.blob()
+			// const date = new Date().getTime()
 			const storageRef = ref(
 				storage,
-				`${firebase.auth().currentUser.email + date}`
+				`${firebase.auth().currentUser.email + timestamp}`
 			)
 
-			const uploadTask = uploadBytesResumable(storageRef, image)
+			const uploadTask = uploadBytesResumable(storageRef, blob)
 
 			// Register three observers:
 			// 1. 'state_changed' observer, called any time the state changes
@@ -79,7 +85,7 @@ const MessageForm2 = ({
 							break
 					}
 				},
-				(error) => {
+				(err) => {
 					setErr(true)
 				},
 				() => {
@@ -120,13 +126,13 @@ const MessageForm2 = ({
 			},
 			[combinedId + '.date']: serverTimestamp(),
 		})
-    // .then(() => {
+		// .then(() => {
 		// 	setText('')
 		// 	setImage(null)
 		// })
 
 		setText('')
-    setImage(null)
+		setImage(null)
 	}
 	console.log(clicked)
 	return (

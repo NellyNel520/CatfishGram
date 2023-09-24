@@ -38,8 +38,8 @@ const ChatScreen = ({ navigation, route }) => {
 			<Messages combinedId={combinedId} user={user} currentUser={currentUser}/>
 			{/* Text Input */}
 
-      {/* <MessageForm combinedId={combinedId} user={user} currentUser={currentUser} setClicked={setClicked} clicked={clicked}/> */}
-      <MessageForm2 combinedId={combinedId} user={user} currentUser={currentUser} setClicked={setClicked} clicked={clicked}/>
+      <MessageForm combinedId={combinedId} user={user} currentUser={currentUser} setClicked={setClicked} clicked={clicked}/>
+      {/* <MessageForm2 combinedId={combinedId} user={user} currentUser={currentUser} setClicked={setClicked} clicked={clicked}/> */}
 		</SafeAreaView>
 	)
 }

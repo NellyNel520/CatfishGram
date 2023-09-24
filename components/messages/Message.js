@@ -1,21 +1,13 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { firebase, db } from '../../firebase'
 
-const Message = ({ message, user, currentUser }) => {
+const Message = ({ message, user, currentUser, ref }) => {
 	const [isOwner, setIsOwner] = useState(false)
+	const photo = message.image
 
 	//
 	useEffect(() => {
-		// const checkSender = () => {
-		// 	if (message.senderId === firebase.auth().currentUser.email) {
-		// 		setIsOwner(true)
-		// 	} else {
-		// 		setIsOwner(false)
-		// 	}
-		// }
-		// checkSender()
-
 		if (message.senderId === currentUser.email) {
 			setIsOwner(true)
 		} else {
@@ -38,10 +30,10 @@ const Message = ({ message, user, currentUser }) => {
 			<View style={styles.messageContainer}>
 				<Text style={styles.messageText}>{message.text}</Text>
 				{/* if image  */}
-				{message.image && (
-					<Image source={{ uri: message.image }} style={styles.image} />
-				)}
 			</View>
+			{message.image ? (
+				<Image source={{ uri: message.image }} style={styles.image} />
+			) : null}
 		</View>
 	)
 
@@ -56,23 +48,23 @@ const Message = ({ message, user, currentUser }) => {
 				{/* replace with time stamp (time ago?) */}
 				<Text style={{ color: 'white', fontWeight: 300 }}>Just now</Text>
 			</View>
-
+<View>
 			{/* message content */}
 			<View style={styles.ownerMessageContainer}>
 				<Text style={styles.messageText}>{message.text}</Text>
 				{/* if image  */}
-				{message.image && (
-					<Image source={{ uri: message.image }} style={styles.image} />
-				)}
 			</View>
+			{message.image ? (
+				<Image
+					source={{ uri: message.image }}
+					style={{ width: 220, height: 220 }}
+				/>
+			) : null}
+      </View>
 		</View>
 	)
 
-	return (
-		<View>
-			{isOwner  ? <OwnerMessage /> : <Message />}
-		</View>
-	)
+	return <View ref={ref}>{isOwner ? <OwnerMessage /> : <Message />}</View>
 }
 
 const styles = StyleSheet.create({
@@ -98,7 +90,8 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		borderBottomLeftRadius: 20,
 		borderBottomRightRadius: 20,
-		borderTopLeftRadius: 20,
+		borderTopRightRadius: 20,
+    
 	},
 	ownerMessageContainer: {
 		borderWidth: 2,
@@ -108,7 +101,7 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 20,
 	},
 	image: {
-		width: '50%',
+		width: 50,
 	},
 })
 

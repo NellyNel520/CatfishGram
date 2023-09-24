@@ -7,16 +7,24 @@ import {
 	Image,
   ScrollView
 } from 'react-native'
-import React, {  useEffect, useState } from 'react'
+// import {
+//   wrapScrollView,
+//   useScrollIntoView,
+// } from 'react-native-scroll-into-view';
+import React, {  useEffect, useState, } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db, firebase } from '../../firebase'
+
 // Components
 import Message from './Message'
+
+// const CustomScrollView = wrapScrollView(ScrollView);
 
 
 const Messages = ({combinedId, user, currentUser}) => {
   // need chat id
   const [messages, setMessages] = useState([])
+ 
 
   useEffect(() => {
     const subscribe = onSnapshot(doc(db, 'chats', combinedId), (doc) => {
@@ -28,6 +36,7 @@ const Messages = ({combinedId, user, currentUser}) => {
     return () => { 
       subscribe
     }
+  
   }, [combinedId])
 
   // no messages yet **add condition to see if there are any messages add styling for no messages yet****
@@ -37,7 +46,7 @@ const Messages = ({combinedId, user, currentUser}) => {
   return (
     <ScrollView style={styles.container}>
       {messages.map((message) => (
-				<Message message={message} key={message.id}  user={user} currentUser={currentUser}/>
+				<Message  message={message} key={message.id}  user={user} currentUser={currentUser}/>
 			))}
     </ScrollView>
   )
