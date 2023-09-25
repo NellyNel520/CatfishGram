@@ -6,11 +6,12 @@ import PostScreenHeader from '../components/post/PostScreenHeader'
 import Post from '../components/post/Post'
 
 const PostScreen = ({ navigation, route }) => {
-	const { post } = route.params
-
-  
-
-
+	const { post} = route.params
+		
+	
+	
+	
+	console.log(post)
 	return (
 		<SafeAreaView style={styles.container}>
 			<PostScreenHeader post={post} navigation={navigation} />

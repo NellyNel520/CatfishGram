@@ -24,7 +24,7 @@ const InboxScreen = ({ navigation }) => {
 			.onSnapshot((snapshot) => {
 				setCurrentUser({
 					uid: firebase.auth().currentUser.email,
-					...snapshot.data(),
+					...snapshot.data(), 
 				})
 			})
 

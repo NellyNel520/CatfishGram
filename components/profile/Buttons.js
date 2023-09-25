@@ -156,7 +156,8 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 
 	const CurrentUserButtons = () => (
 		<View style={{ marginTop: 40, flexDirection: 'row' }}>
-			<TouchableOpacity style={styles.button}>
+
+			<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('EditProfileScreen')}>
 				<Text style={styles.buttonText}>Edit profile</Text>
 			</TouchableOpacity>
 
@@ -201,7 +202,7 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 
 	return (
 		<View style={{ marginTop: 40, flexDirection: 'row' }}>
-			{isCurrentUser ? <CurrentUserButtons /> : <UserButtons />}
+			{isCurrentUser ? <CurrentUserButtons navigation={navigation}/> : <UserButtons />}
 		</View>
 	)
 }

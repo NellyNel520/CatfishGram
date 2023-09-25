@@ -79,7 +79,7 @@ const ProfileScreen = ({ navigation, route }) => {
       <ScrollView>
         <SubHeader user={user} userPosts={userPosts} followers={followers} following={following}/>
         <Bio user={user}/>
-        <Buttons userId={userId} isCurrentUser={isCurrentUser} followers={followers}/>
+        <Buttons userId={userId} isCurrentUser={isCurrentUser} followers={followers} navigation={navigation}/>
         <PostGrid userPosts={userPosts}  navigation={navigation}/>
       </ScrollView>
     </SafeAreaView>
