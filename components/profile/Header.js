@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 
-const Header = ({ user }) => {
+const Header = ({ user, navigation }) => {
 	return (
 		<View style={styles.container}>
 			{/* username + down arrow */}
@@ -24,7 +24,7 @@ const Header = ({ user }) => {
 
 			{/* add & menu icon */}
 			<View style={styles.iconsContainer}>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate('NewPostScreen')}>
 					<Image
 						style={styles.icon}
 						source={{

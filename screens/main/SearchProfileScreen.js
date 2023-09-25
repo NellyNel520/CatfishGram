@@ -24,7 +24,7 @@ const SearchProfileScreen = ({ navigation, route }) => {
 	// const [isFollowing, setIsFollowing] = useState(false)
 	let [followers, setFollowers] = useState([])
 	const [following, setFollowing] = useState([])
-
+ 
 	const getUser = () => {
 		// may need to change doc ref from uid to user email to be consistent
 		const docRef = db.collection('users').doc(userId)

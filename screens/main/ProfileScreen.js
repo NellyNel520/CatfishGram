@@ -17,7 +17,7 @@ import Buttons from '../../components/profile/Buttons'
 import PostGrid from '../../components/profile/PostGrid'
 
 
-
+ 
 const ProfileScreen = ({ navigation, route }) => {
   const { userId } = route.params
   const [userPosts, setUserPosts] = useState([])

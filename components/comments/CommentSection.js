@@ -30,21 +30,7 @@ const CommentSection = ({ post, setModalVisible, modalVisible }) => {
 			})
 	}, [])
 
-	// const CommentHeader = ({modalVisible}) => (
-	// 	<View style={{marginTop: 10,}}>
-	// 		<View style={{ justifyContent: 'center', alignItems: 'center',}}>
-	// 			<TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-	// 				<Image
-	// 					source={{
-	// 						uri: 'https://img.icons8.com/sf-black/128/horizontal-line.png',
-	// 					}}
-	// 					style={{ width: 80, height: 40 }}
-	// 				/>
-	// 			</TouchableOpacity>
-	// 			<Text style={styles.headerText}>Comments</Text>
-	// 		</View>
-	// 	</View>
-	// )
+	
 
 	const ViewComments = ({ post, comments }) => (
 		<View style={{ marginTop: 8 }}>
