@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React from 'react'
 
-const Header = ({post, navigation}) => {
+const PostScreenHeader = ({post, navigation}) => {
   return (
     <View style={styles.headerContainer}>
 
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default Header
+export default PostScreenHeader

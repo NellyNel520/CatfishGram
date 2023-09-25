@@ -101,7 +101,7 @@ const MessageForm = ({
 								senderId: currentUser.uid,
 								date: date,
 								image: downloadURL,
-							}),
+							}), 
 						})
 					})
 				}

@@ -44,7 +44,7 @@ const CommentForm = ({ post }) => {
 				console.log('Error getting document:', error)
 			})
 		return unsubscribe
-	} 
+	}
 
 	useEffect(() => {
 		getUsername()
@@ -62,62 +62,55 @@ const CommentForm = ({ post }) => {
 				owner_uid: firebase.auth().currentUser.uid,
 				owner_email: firebase.auth().currentUser.email,
 				createdAt: new Date(),
-				likes_by_users: [], 
+				likes_by_users: [],
 			})
 
 		return unsubscribe
 	}
 	return (
+		<Formik
+			initialValues={{ comment: '' }}
+			onSubmit={(values) => {
+				// console.log(values)
+				// console.log('Your Comment was submitted successfully 🎉')
 
-				<Formik
-					initialValues={{ comment: '' }}
-					onSubmit={(values) => {
-						// console.log(values)
-						// console.log('Your Comment was submitted successfully 🎉')
+				uploadCommentToFirebase(values.comment)
+			}}
+			validationSchema={uploadCommentSchema}
+			validateOnMount={true}
+		>
+			{({
+				handleBlur,
+				handleChange,
+				handleSubmit,
+				values,
+				errors,
+				isValid,
+			}) => (
+				<>
+					<View style={styles.wrapper}>
+						<View style={{ flexDirection: 'row' }}>
+							<Image source={{ uri: profilePic }} style={styles.story} />
 
-						uploadCommentToFirebase(values.comment)
-					}}
-					validationSchema={uploadCommentSchema}
-					validateOnMount={true}
-				>
-					{({
-						handleBlur,
-						handleChange,
-						handleSubmit,
-						values,
-						errors,
-						isValid,
-					}) => (
-						<>
-							<View style={styles.wrapper}>
-								<View style={{ flexDirection: 'row' }}>
-									<Image source={{ uri: profilePic }} style={styles.story} />
-
-									<View style={{ flex: 1 }}>
-										<TextInput
-											style={styles.inputField}
-											placeholder="Write a Comment"
-											placeholderTextColor="gray"
-											multiline={true}
-											onChangeText={handleChange('comment')}
-											onBlur={handleBlur('comment')}
-											value={values.comment}
-										/>
-										{/* error message for form validation */}
-									</View>
-
-									<Button
-										title="Post"
-										disabled={!isValid}
-										onPress={handleSubmit}
-									/>
-								</View>
+							<View style={{ flex: 1 }}>
+								<TextInput
+									style={styles.inputField}
+									placeholder="Write a Comment"
+									placeholderTextColor="gray"
+									multiline={true}
+									onChangeText={handleChange('comment')}
+									onBlur={handleBlur('comment')}
+									value={values.comment}
+								/>
+								{/* error message for form validation */}
 							</View>
-						</>
-					)}
-				</Formik>
-	
-		
+
+							<Button title="Post" disabled={!isValid} onPress={handleSubmit} />
+						</View>
+					</View>
+				</>
+			)}
+		</Formik>
 	)
 }
 
@@ -140,11 +133,10 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 	wrapper: {
-		position:'relative',
+		position: 'relative',
 		width: '100%',
-		bottom: 0,
-		zIndex: 999,
-		marginVertical: 10,
+
+		// marginVertical: 10,
 		// marginTop: 120
 		flex: 1,
 		// backgroundColor: '#000000',

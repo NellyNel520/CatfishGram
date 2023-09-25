@@ -11,33 +11,19 @@ import {
 import React, { useState, useEffect } from 'react'
 import { firebase, db } from '../../firebase'
 // ***components***
+import PostHeader from './PostHeader'
+import PostImage from './PostImage'
+import PostFooter from './PostFooter'
 import CommentSection from '../comments/CommentSection'
+import Likes from './Likes'
+import Caption from './Caption'
 import AllComments from '../comments/AllComments'
+import ModalHeader from '../comments/ModalHeader'
 
-const postFooterIcons = [
-	{
-		name: 'Like',
-		imageUrl: 'https://img.icons8.com/ios/50/ffffff/like--v1.png',
-		likedImageUrl: 'https://img.icons8.com/ios-filled/50/F32424/like--v1.png',
-	},
-	{
-		name: 'Comment',
-		imageUrl: 'https://img.icons8.com/ios/50/ffffff/speech-bubble--v1.png',
-	},
-	{
-		name: 'Share',
-		imageUrl: 'https://img.icons8.com/ios/50/ffffff/speech-bubble--v1.png',
-	},
-	{
-		name: 'Save',
-		imageUrl:
-			'https://img.icons8.com/fluency-systems-regular/48/ffffff/bookmark-ribbon--v1.png',
-	},
-]
+
 
 const Post = ({ post, navigation }) => {
 	const [comments, setComments] = useState([])
-	const [isLiked, setIsLiked] = useState(false)
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
@@ -78,162 +64,27 @@ const Post = ({ post, navigation }) => {
 			})
 	}
 
-	const PostHeader = ({ post }) => (
-		<View
-			style={{
-				flexDirection: 'row',
-				justifyContent: 'space-between', 
-				// margin: 5,
-				marginTop: 16,
-				marginBottom: 10,
-				alignItems: 'center',
-			}}
-		>
-			<TouchableOpacity onPress={() => navigation.navigate('SearchProfileScreen', {
-				userId: post.owner_email
-			})}>
-				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-					<Image source={{ uri: post.profile_picture }} style={styles.story} />
-					<Text style={{ color: 'white', marginLeft: 5, fontWeight: '700' }}>
-						{post.user}
-					</Text>
-				</View>
-			</TouchableOpacity>
 
-			<TouchableOpacity>
-				<Image
-					source={{
-						uri: 'https://img.icons8.com/ios-glyphs/30/ffffff/more.png',
-					}}
-					style={{ width: 30, height: 30 }}
-				/>
-			</TouchableOpacity>
-		</View>
-	)
+	
 
-	const PostImage = ({ post }) => (
-		<View style={{ width: '100%', height: 510 }}>
-			<Image
-				source={{ uri: post.imageUrl }}
-				style={{ height: '100%', resizeMode: 'cover' }}
-			/>
-		</View>
-	)
-
-	const PostFooter = ({ post, handleLike, comments }) => (
-		<View style={{ flexDirection: 'row' }}>
-			{/* Add modal here for link to comment section and form */}
-			{/* need to add comment header section too || all comments component already imported */}
-			<View style={styles.leftFooterIconContainer}>
-				<TouchableOpacity onPress={() => handleLike(post)}>
-					<Image
-						style={styles.footerIcon}
-						source={{
-							uri: post.likes_by_users.includes(
-								firebase.auth().currentUser.email
-							)
-								? postFooterIcons[0].likedImageUrl
-								: postFooterIcons[0].imageUrl,
-						}}
-						// source={{uri: postFooterIcons[0].imageUrl}}
-					/>
-				</TouchableOpacity>
-				<Modal
-					animationType="slide"
-					transparent={true}
-					visible={modalVisible}
-					// visible={false}
-				>
-					<View
-						style={{
-							marginTop: 80,
-							backgroundColor: '#5A5A5A',
-							flex: 1,
-						}}
-					>
-						<View>
-							<CommentHeader modalVisible={modalVisible} />
-							<AllComments post={post} comments={comments} />
-						</View>
-					</View>
-				</Modal>
-
-				{/* Add on press to trigger modal visibility */}
-				<TouchableOpacity onPress={() => setModalVisible(true)}>
-					<Image
-						style={styles.footerIcon}
-						source={{
-							uri: 'https://img.icons8.com/ios/50/ffffff/speech-bubble--v1.png',
-						}}
-					/>
-				</TouchableOpacity>
-				<TouchableOpacity>
-					<Image
-						style={styles.footerIcon}
-						source={{
-							uri: 'https://img.icons8.com/ios/50/ffffff/sent--v1.png',
-						}}
-					/>
-				</TouchableOpacity>
-			</View>
-
-			<View style={{ flex: 1, alignItems: 'flex-end' }}>
-				<TouchableOpacity>
-					<Image
-						style={styles.footerIcon}
-						source={{
-							uri: 'https://img.icons8.com/fluency-systems-regular/48/ffffff/bookmark-ribbon--v1.png',
-						}}
-					/>
-				</TouchableOpacity>
-			</View>
-		</View>
-	)
-
-	const CommentHeader = ({ modalVisible }) => (
-		<View style={{ marginTop: 10 }}>
-			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-				<TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-					<Image
-						source={{
-							uri: 'https://img.icons8.com/sf-black/128/horizontal-line.png',
-						}}
-						style={{ width: 80, height: 40 }}
-					/>
-				</TouchableOpacity>
-				<Text style={styles.headerText}>Comments</Text>
-			</View>
-		</View>
-	)
-
-	const Likes = ({ post }) => (
-		<View style={{ flexDirection: 'row', marginTop: 4 }}>
-			<Text style={{ color: 'white', fontWeight: 600 }}>
-				{post.likes_by_users.length.toLocaleString('en')} likes
-			</Text>
-			{/* <Text style={{ color: 'white', fontWeight: 600 }}>{post.likes} likes</Text> */}
-		</View>
-	)
-
-	const Caption = ({ post }) => (
-		<View style={{ marginTop: 5 }}>
-			<Text style={{ color: 'white' }}>
-				<Text style={{ fontWeight: '800' }}>{post.user} </Text>
-				<Text>{post.caption}</Text>
-			</Text>
-		</View>
-	)
 
 	return (
 		<ScrollView>
-			<PostHeader post={post} />
+			<PostHeader post={post} navigation={navigation} />
 			<PostImage post={post} />
 			<View style={{ marginHorizontal: 2, marginTop: 10 }}>
-				<PostFooter post={post} comments={comments} handleLike={handleLike} />
+				<PostFooter
+					post={post}
+					comments={comments}
+					handleLike={handleLike}
+					setModalVisible={setModalVisible}
+					modalVisible={modalVisible}
+				/>
 				<Likes post={post} />
 				<Caption post={post} />
 
-				<CommentSection post={post} />
+				<CommentSection post={post} setModalVisible={setModalVisible}
+					modalVisible={modalVisible}/>
 			</View>
 		</ScrollView>
 	)

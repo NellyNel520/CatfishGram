@@ -28,7 +28,7 @@ const ChatScreen = ({ navigation, route }) => {
 				: user.owner_uid + currentUser.owner_uid
 
 
-	
+	 
 
 	return (
 		<SafeAreaView style={styles.container}>
