@@ -1,6 +1,8 @@
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
+import { Divider } from 'react-native-elements'
 import Header from '../components/editProfile/Header'
+import ProfilePic from '../components/editProfile/ProfilePic'
 
 const EditProfileScreen = ({navigation}) => {
 
@@ -11,6 +13,9 @@ const EditProfileScreen = ({navigation}) => {
       {/* header */}
       <Header navigation={navigation}/>
       {/* profile pic */}
+     
+      <ProfilePic />
+
       {/* edit form  */}
       {/* links / buttons  */}
     </SafeAreaView>

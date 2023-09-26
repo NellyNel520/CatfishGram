@@ -1,5 +1,5 @@
 import {
-	View,
+	View, 
 	Text,
 	Image,
 	StyleSheet,
@@ -34,7 +34,7 @@ const CommentSection = ({ post, setModalVisible, modalVisible }) => {
 
 	const ViewComments = ({ post, comments }) => (
 		<View style={{ marginTop: 8 }}>
-			<Modal
+			<Modal 
 				animationType="slide"
 				transparent={true}
 				// presentationStyle="FormSheet"

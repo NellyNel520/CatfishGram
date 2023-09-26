@@ -5,7 +5,7 @@ import { db } from '../../firebase'
 const SubHeader = ({ user, userPosts, followers, following }) => {
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.container}> 
 			<TouchableOpacity>
 				<Image
 					style={styles.profilePic}
