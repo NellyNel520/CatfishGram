@@ -9,10 +9,11 @@ import {
 import React, { useState, useEffect } from 'react'
 import { firebase, db } from '../../firebase'
 import { Divider } from 'react-native-elements'
+import * as ImagePicker from 'expo-image-picker'
 
 const ProfilePic = () => {
 	const [profilePic, setProfilePic] = useState('')
-	// const [newProfilePic, setNewProfilePic] = useState('')
+	const [newProfilePic, setNewProfilePic] = useState(null)
 	const [modalVisible, setModalVisible] = useState(false)
 
 	const getProfilePic = () => {
@@ -38,6 +39,22 @@ const ProfilePic = () => {
 		getProfilePic()
 	}, [])
 
+  const pickImage = async () => {
+		// No permissions request is necessary for launching the image library
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.Images,
+			allowsEditing: true,
+			aspect: [4, 3],
+			quality: 1,
+		})
+
+		console.log(result)
+
+		if (!result.canceled) {
+			setNewProfilePic(result.assets[0].uri)
+		}
+	}
+
 	const ModalHeader = ({ modalVisible, setModalVisible }) => (
 		<View style={{ marginTop: 10 }}>
 			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -59,6 +76,7 @@ const ProfilePic = () => {
 			{/* pick from library */}
 				<TouchableOpacity
 					style={{ flexDirection: 'row', alignItems: 'flex-start', marginLeft: 15, marginBottom: 20 }}
+          onPress={pickImage}
 				>
 					<Image
 						source={{
@@ -70,7 +88,7 @@ const ProfilePic = () => {
 				</TouchableOpacity>
 
 
-			{/* import from facebook */}
+			{/* import from facebook ***Not Functional*** */}
 			<TouchableOpacity
 					style={{ flexDirection: 'row', alignItems: 'flex-start', marginLeft: 15, marginBottom: 20}}
 				>
@@ -85,7 +103,7 @@ const ProfilePic = () => {
 
 
 			{/* take photo
-      ***nav to camera screen then next button sends newProfilePic back to edit screen as param,
+      ***nav to camera screen then next button to set image, pass (setNewProfile image ),
       conditionally render newProfilePic if present instead of current photo*** */}
       <TouchableOpacity
 					style={{ flexDirection: 'row', alignItems: 'flex-start', marginLeft: 20, marginBottom: 20}}
@@ -167,8 +185,8 @@ const ProfilePic = () => {
 					alignItems: 'center',
 				}}
 			>
-				<Image source={{ uri: profilePic }} style={styles.profilePic} />
-				<EditButton
+				<Image source={{ uri: newProfilePic ? newProfilePic : profilePic }} style={styles.profilePic} />
+				<EditButton 
 					modalVisible={modalVisible}
 					setModalVisible={setModalVisible}
 				/>
