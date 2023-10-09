@@ -1,6 +1,7 @@
 import { StyleSheet, View, Image, Text } from 'react-native'
 import React from 'react'
 import SignupForm from '../../components/auth/SignupForm'
+// import photo from '../../assets/'
 
 const INSTAGRAM_LOGO = 'https://img.icons8.com/fluency/96/instagram-new.png'
 
@@ -9,11 +10,12 @@ const SignupScreen = ({ navigation }) => {
 		<View style={styles.container}>
 			<View style={styles.logoContainer}>
 				<Image source={{ uri: INSTAGRAM_LOGO, height: 100, width: 100 }} />
+				<Image source={require('../../assets/catfishGram-logo.png')} style={{width: 220, height: 100, marginTop: 10}}/>
 			</View>
 			{/* signup form */}
 			<SignupForm navigation={navigation} />
 		</View>
-	)
+	) 
 }
 
 const styles = StyleSheet.create({

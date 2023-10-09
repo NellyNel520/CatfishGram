@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	wrapper: {
-		marginTop: 80,
+		marginTop: 20,
 	},
 	button: (isValid) => ({
 		backgroundColor: isValid ? '#0096f6' : '#9ACAF7',
