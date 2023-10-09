@@ -155,7 +155,8 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 	)
 
 	const CurrentUserButtons = () => (
-		<View style={{ marginTop: 40, flexDirection: 'row' }}>
+		<View style={{  
+			flexDirection: 'row' }}>
 
 			<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('EditProfileScreen')}>
 				<Text style={styles.buttonText}>Edit profile</Text>
@@ -209,9 +210,9 @@ const Buttons = ({ userId, isCurrentUser, followers, user, navigation }) => {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		marginTop: 40,
+		// marginTop: 5,
 		flexDirection: 'row',
-		marginHorizontal: 20,
+		marginLeft: 15,
 		justifyContent: 'space-between',
 	},
 	button: {

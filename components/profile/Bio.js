@@ -16,9 +16,9 @@ const Bio = ({ user }) => {
 				<Text
 					style={{
 						color: 'white',
-						marginTop: 5,
-						fontSize: 16,
-						fontWeight: 500,
+						marginTop: 15,
+						fontSize: 20,
+						
 					}}
 				>
 					{bio}
