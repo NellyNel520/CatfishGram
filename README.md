@@ -54,7 +54,21 @@ CatfishGram is a feature-rich Instagram clone, meticulously crafted using React 
 
 ***
 ### ***Screenshots***
+##### Login & Register Screens
 
+##### Main Feed Screen
+
+##### Posts Component with comment Modal
+
+##### Search Screen
+
+##### NewPost Screen
+
+##### Profile Screen
+
+##### Edit Profile Screen
+
+##### Message History and Chat Screens
 
 *** 
 
