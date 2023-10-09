@@ -55,20 +55,39 @@ CatfishGram is a feature-rich Instagram clone, meticulously crafted using React 
 ***
 ### ***Screenshots***
 ##### Login & Register Screens
+<img width="25%" height="35%" alt="signupScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/b29d95f6-0e5a-415b-848a-ba60d9026346">
+<img width="25%" height="35%" alt="loginScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/df72508b-9658-446e-8bc6-35a0091cafe1">
 
 ##### Main Feed Screen
-
-##### Posts Component with comment Modal
+<img width="25%" height="35%" alt="mainFeed" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/c335a759-1faa-4977-883b-3ef1830c17cd">
+<img width="25%" height="35%" alt="commentModal" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/2acccc06-a410-4a52-97db-bf21d213378d">
 
 ##### Search Screen
+<img  width="25%" height="35%" alt="searchScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/185892fc-7f7f-4f4f-9b5e-291cdaf82db9">
+<img width="25%" height="35%" alt="currentUserSearchProfile" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/0d0c3984-d050-4501-bcfb-719d4b37e5b1">
+<img width="25%" height="35%" alt="userProfile-Search" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/71b2c193-ff23-4e96-9569-a164129dac28">
 
-##### NewPost Screen
 
-##### Profile Screen
+##### Current User Profile Screen
+<img width="25%" height="35%" alt="profileScreen-CurrentUser-fromTabNav" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/918abb60-f460-4f07-a984-b019236b21b8">
 
 ##### Edit Profile Screen
+<img width="25%" height="35%" alt="editProfileScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/a0b6272f-afe1-45ac-a049-3f65b625c0d1">
+<img width="25%" height="35%" alt="editProfilePic-Modal" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/c96766c6-c371-453d-91d1-e42458b7488e">
+
+
+##### Posts Screen 
+<img width="25%" height="35%" alt="postScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/e0e57421-1ed3-4816-a598-8e2bb35c4ee5">
+
+
+##### New Post & Submit Post Screen
+<img width="25%" height="35%" alt="" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/da9223cd-3d0e-44f0-9aa9-f643fcbc99d6">
+<img width="25%" height="35%" alt="" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/bfe44a16-5594-48e5-ac5b-ebf03ded423b">
+<img width="25%" height="35%" alt="" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/6c35602f-e74d-4ea1-8d78-a85797766b98">
 
 ##### Message History and Chat Screens
+<img width="25%" height="35%" alt="InboxScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/93e81485-6ee9-4ef8-bf0b-784192481b14">
+<img width="25%" height="35%" alt="chatScreen" src="https://github.com/NellyNel520/ReactNativeExpo-InstagramClone/assets/117863144/e52295bc-ee78-4e46-a5c6-86c9e0549866">
 
 *** 
 
