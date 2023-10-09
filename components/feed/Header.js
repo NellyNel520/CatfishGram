@@ -17,8 +17,11 @@ const Header = ({navigation}) => {
   return (
     <View style={styles.container}>
       {/* Logo */}
-      <TouchableOpacity onPress={handleSignout}>
-        <Image style={styles.logo} source={require('../../assets/ig-logo.png')}/>
+      <TouchableOpacity onPress={handleSignout} >
+        <Image 
+				style={{width: 180, height: 80,}}
+				// style={styles.logo}
+				 source={require('../../assets/catfishGram-logo.png')}/>
       </TouchableOpacity>
 
       {/* icons on right */}
@@ -61,11 +64,13 @@ const styles = StyleSheet.create({
   container: {
 		justifyContent: 'space-between',
 		alignItems: 'center',
+	
 		flexDirection: 'row',
 		marginHorizontal: 20,
 	},
 	iconsContainer: {
 		flexDirection: 'row',
+		marginTop: -50,
 	},
   unreadBadge: {
 		backgroundColor: '#FF3250',
