@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-    // marginLeft: 10
+    marginBottom: 10
   },
   headerText: {
 		color: 'white',
-		fontWeight: 800,
+		fontWeight: 600,
 		fontSize: 25,
 		// marginRight: 25,
 	},

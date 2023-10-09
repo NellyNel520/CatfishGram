@@ -11,7 +11,8 @@ import PostScreen from './screens/PostScreen'
 import SearchProfileScreen from './screens/main/SearchProfileScreen'
 import InboxScreen from './screens/messages/InboxScreen'
 import ChatScreen from './screens/messages/ChatScreen'
-import EditProfileScreen from './screens/EditProfileScreen'
+import EditProfileScreen from './screens/editProfile/EditProfileScreen'
+import CameraScreen2 from './screens/editProfile/CameraScreen2'
 
 const Stack = createStackNavigator()
 
@@ -41,10 +42,14 @@ export const SignedInStack = () => (
 			<Stack.Screen name="NewPostScreen" component={NewPostScreen} />
 			<Stack.Screen name="SubmitPostScreen" component={SubmitPostScreen} />
 			<Stack.Screen name="PostScreen" component={PostScreen} />
-			<Stack.Screen name="SearchProfileScreen" component={SearchProfileScreen} />
+			<Stack.Screen
+				name="SearchProfileScreen"
+				component={SearchProfileScreen}
+			/>
 			<Stack.Screen name="InboxScreen" component={InboxScreen} />
 			<Stack.Screen name="ChatScreen" component={ChatScreen} />
 			<Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+			<Stack.Screen name="CameraScreen2" component={CameraScreen2} />
 		</Stack.Navigator>
 	</NavigationContainer>
 )

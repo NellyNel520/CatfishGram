@@ -84,6 +84,7 @@ const NewPostScreen = ({ navigation }) => {
 					<Image source={{uri: 'https://img.icons8.com/sf-regular-filled/48/A79F9F/image.png'}} style={{width: 60, height: 60}}/>
 				</TouchableOpacity>
 			</View>
+			
 			{image && (
 				<View>
 					<Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
