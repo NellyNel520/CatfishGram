@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2.5,
 	},
 	wrapper: {
-		marginTop: 80,
+		marginTop: 30,
 	},
 	signupContainer: {
 		flexDirection: 'row',

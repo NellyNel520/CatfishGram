@@ -9,6 +9,7 @@ const LoginScreen = ({ navigation }) => {
 		<View style={styles.container}>
 			<View style={styles.logoContainer}>
 				<Image source={{ uri: INSTAGRAM_LOGO, height: 100, width: 100 }} />
+				<Image source={require('../../assets/catfishGram-logo.png')} style={{width: 220, height: 100, marginTop: 30}}/>
 			</View>
 			{/* Login Form */}
 			<LoginForm navigation={navigation} />
