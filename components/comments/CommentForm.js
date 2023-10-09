@@ -5,15 +5,13 @@ import {
 	TextInput,
 	Button,
 	StyleSheet,
-	KeyboardAvoidingView,
-	TouchableWithoutFeedback,
-	Keyboard,
+
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { firebase, db } from '../../firebase'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 const uploadCommentSchema = Yup.object().shape({
 	comment: Yup.string()

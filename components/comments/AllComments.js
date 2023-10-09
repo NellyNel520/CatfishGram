@@ -4,9 +4,6 @@ import {
 	TouchableOpacity,
 	Image,
 	StyleSheet,
-	KeyboardAvoidingView,
-	TouchableWithoutFeedback,
-	Keyboard,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import React from 'react'
