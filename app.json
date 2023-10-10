@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "IG-Clone3",
-    "slug": "IG-Clone3",
+    "name": "CatfishGram",
+    "slug": "catfishgram",
+    "description": "Instagram Clone built with react native expo, firebase authentication and fireStore database. Replicating the real Instagram's functionality and design.",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/catfishGram-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/catfishGram-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
