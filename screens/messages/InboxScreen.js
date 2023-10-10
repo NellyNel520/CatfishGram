@@ -54,7 +54,8 @@ const InboxScreen = ({ navigation }) => {
 			{/* search bar */}
 
 			{/* messages flatlist */}
-			<ScrollView style={{marginTop: 30,}}>
+			<Text style={{color: 'white', marginTop: 20, marginHorizontal: 10, fontSize: 20, fontWeight: 700 }}>Messages</Text>
+			<ScrollView style={{marginTop: 18,}}>
 				{Object.entries(chats)
 					?.sort((a, b) => b[1].date - a[1].date)
 					.map((chat) => (
