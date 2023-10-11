@@ -67,7 +67,7 @@ const AllComments = ({ post, comments }) => {
 
 					{comments.length > 0 ? (
 						comments.map((comment, index) => (
-							<View key={index} style={{ height: '100%' }}>
+							<View key={index} style={{ height: '45%' }}>
 								<View
 									style={{
 										flexDirection: 'row',
