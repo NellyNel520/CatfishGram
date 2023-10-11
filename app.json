@@ -26,6 +26,8 @@
     },
     "web": {
       "favicon": "./assets/catfishGram-icon.png"
+    }, "updates": {
+      "useClassicUpdates": true
     }
   }
 }
