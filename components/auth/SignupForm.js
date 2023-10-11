@@ -6,6 +6,7 @@ import {
 	StyleSheet,
 	Pressable,
 	TouchableOpacity,
+	ScrollView
 } from 'react-native'
 import React from 'react'
 import * as Yup from 'yup'
@@ -57,7 +58,7 @@ const onSignup = async (email, password, username, name) => {
 
 const SignupForm = ({ navigation }) => {
 	return (
-		<View style={styles.wrapper}>
+		<ScrollView style={styles.wrapper}>
 			<Formik
 				initialValues={{ email: '', password: '', username: '', name: '' }}
 				onSubmit={(values) => {
@@ -189,7 +190,7 @@ const SignupForm = ({ navigation }) => {
 					</>
 				)}
 			</Formik>
-		</View>
+		</ScrollView>
 	)
 }
 
