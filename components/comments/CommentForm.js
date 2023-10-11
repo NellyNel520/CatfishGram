@@ -5,6 +5,11 @@ import {
 	TextInput,
 	Button,
 	StyleSheet,
+	KeyboardAvoidingView,
+	TouchableWithoutFeedback,
+	Keyboard,
+	Platform
+
 
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
@@ -66,6 +71,9 @@ const CommentForm = ({ post }) => {
 		return unsubscribe
 	}
 	return (
+
+
+	
 		<Formik
 			initialValues={{ comment: '' }}
 			onSubmit={(values) => {
@@ -86,7 +94,12 @@ const CommentForm = ({ post }) => {
 				isValid,
 			}) => (
 				<>
-					<View style={styles.wrapper}>
+
+
+					<KeyboardAvoidingView behavior="padding"  style={styles.wrapper}>
+					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
+				
 						<View style={{ flexDirection: 'row' }}>
 							<Image source={{ uri: profilePic }} style={styles.story} />
 
@@ -105,10 +118,14 @@ const CommentForm = ({ post }) => {
 
 							<Button title="Post" disabled={!isValid} onPress={handleSubmit} />
 						</View>
-					</View>
+						</TouchableWithoutFeedback>
+					</KeyboardAvoidingView>
+
+
 				</>
 			)}
 		</Formik>
+	
 	)
 }
 
@@ -131,7 +148,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 	wrapper: {
-		position: 'relative',
+		// position: 'relative',
 		width: '100%',
 
 		// marginVertical: 10,

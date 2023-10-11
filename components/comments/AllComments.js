@@ -4,6 +4,10 @@ import {
 	TouchableOpacity,
 	Image,
 	StyleSheet,
+	KeyboardAvoidingView,
+	TouchableWithoutFeedback,
+	Keyboard,
+	Platform
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import React from 'react'
@@ -60,8 +64,13 @@ const AllComments = ({ post, comments }) => {
 		</TouchableOpacity>
 	)
 	return (
-		<View>
-			<View style={{ marginHorizontal: 7, marginTop: 25, height: '100%' }}>
+		// <KeyboardAvoidingView behavior="padding" >
+		// <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
+		
+			<View 
+			style={{ marginHorizontal: 7, marginTop: 25, height: '90%' }}
+			>
 				<ScrollView>
 					{/* style layout needs work so text input pushes up above keyboard and not hidden for add comment form in modal */}
 
@@ -137,7 +146,8 @@ const AllComments = ({ post, comments }) => {
 				</ScrollView>
 				<CommentForm post={post} />
 			</View>
-		</View>
+	// 		</TouchableWithoutFeedback>
+	// 	</KeyboardAvoidingView>
 	)
 }
 
