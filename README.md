@@ -8,7 +8,7 @@
 
 #### ***Description***
 
-CatfishGram is a feature-rich Instagram clone, meticulously crafted using React Native Expo and fortified with Firebase services for authentication, image management, and real-time data handling. This Instagram clone doesn't just replicate Instagram's features; it adds a playful twist by assigning users random profile images upon registration, reflecting its playful "Catfish" theme and making each profile uniquely delightful. Users can seamlessly register, log in, explore posts, and engage with the community through likes, comments, real-time direct messaging, and more.
+CatfishGram is a feature-rich Instagram clone, meticulously crafted using React Native Expo and fortified with Firebase services for authentication, image management, and real-time data handling. This Instagram clone doesn't just replicate Instagram's features; it adds a playful twist by assigning users random profile images upon registration, reflecting its playful "Catfish" theme. Users can seamlessly register, log in, explore posts, and engage with the community through likes, comments, direct messaging, and more with real-time updates!
 
 This project has been deployed and can be viewed [here](https://expo.dev/@nelharris05/catfishgram) .
 ***
