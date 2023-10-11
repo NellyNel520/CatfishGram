@@ -1,8 +1,7 @@
-
 {
   "expo": {
     "name": "CatfishGram",
-    "slug": "catfish-gram",
+    "slug": "catfishgram",
     "description": "Instagram Clone built with react native expo, firebase authentication and fireStore database. Replicating the real Instagram's functionality and design.",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,18 +26,6 @@
     },
     "web": {
       "favicon": "./assets/catfishGram-icon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "6e0a8aec-f898-4b4f-8309-c29f44d1efe9"
-      }
-    },
-    "owner": "nellynel520",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/6e0a8aec-f898-4b4f-8309-c29f44d1efe9"
     }
   }
 }
